@@ -46,6 +46,8 @@ DF_STYLE = (INDEX_NAMES, HEADERS, TEXT_HIGHLIGHT)
 # For Dataframe Gradients
 DF_CMAP: Colormap = sns.dark_palette("#00A5A8", as_cmap=True)
 DF_CMAP2: Colormap = sns.dark_palette("#FF5508", as_cmap=True)
+DF_CMAP_R: Colormap = sns.dark_palette("#00A5A8", as_cmap=True, reverse = True)
+DF_CMAP2_R: Colormap = sns.dark_palette("#FF5508", as_cmap=True, reverse = True)
 # For colorscales
 color_map = [[0.0, "#00D8DB"], [0.5, "#002832"], [1.0, "#FF5508"]] # Cyan - Dark Blue - Orange
 
