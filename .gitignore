@@ -1,0 +1,7 @@
+.venv-academic-success/
+data/
+__pycache__/
+logs.log
+.vscode/
+catboost_info/
+academic-success-predictions.csv
