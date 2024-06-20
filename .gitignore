@@ -4,4 +4,7 @@ __pycache__/
 logs.log
 .vscode/
 catboost_info/
-academic-success-predictions.csv
+Submissions/
+FeatureEngineering.ipynb
+optuna.ipynb
+random.ipynb
