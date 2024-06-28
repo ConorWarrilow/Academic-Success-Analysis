@@ -182,7 +182,8 @@ Age at enrollment shows older students as being much more likely to dropout, wit
 
 
 
-
+### Cumulative Kde Plots
+We can also take a look at the cumulative kde plots.
 <details>
   <summary>$${\color{#72B3A2}\text{View Cumulative Kde Plots}}$$</summary>
 <div align="center">
@@ -190,9 +191,11 @@ Age at enrollment shows older students as being much more likely to dropout, wit
 </div>
 </details>
 
+To be honest, the cumulative Kde plots aren't particuarly useful, as most of the insights can be quite easily pulled from the Kde plots. 
+
 
 ## $${\color{#00A5A8}\text{1.4 Binary Feature Analysis}}$$
-To Wrap up our EDA We'll take a look at our binary Features using sunburst plots. Unfortunately, they're no longer interactive as images, which is half the value (and 100% of the fun) of a sunburst plot, but we'll make do.
+To Wrap up our EDA We'll take a look at our binary Features using sunburst plots. Unfortunately, they're no longer interactive as images, which is half the value (and 100% of the fun) of a sunburst plot, but we'll make do. 
 
 <details>
   <summary>$${\color{#72B3A2}\text{View Sunburst Plots}}$$</summary>
@@ -205,12 +208,12 @@ There seem to be many valuable insights from the binary features. The most notab
 
 - 82% of scholarship holders graduate, while only 36% of those without scholarships graduate
 - 94% of students without up to date fees drop out, while only 26% of students with up to date fees drop out
-- Gender, debtor, and attendance style also have large differences in their class values.
+- Gender, debtor, and attendance style also contain large differences in their distribution of class values
 
 ## $${\color{#00A5A8}\text{1.5 Other EDA}}$$
 While we covered a good few topics, we barely scratched the surface of EDA.
 
-Steps such as bivariate analysis, detecting outliers, and feature interactions could also be explored to better understand the data.
+Further exploration such as bivariate analysis, detecting + handling outliers, and feature interactions could also be explored to better understand the data.
 
 
 
@@ -219,14 +222,14 @@ Steps such as bivariate analysis, detecting outliers, and feature interactions c
 
 # $${\color{#00D8DB}\text{2. Feature Transformations}}$$
 Before we can begin the machine learning stage, our features need to undergo transformations. Feature transformations are a crucial preprocessing step. For our specific case, the transformations we'll cover are:
-- Applying log, sqrt, box-cox, yeojohnson, etc to numerical features to reduce skew, address heteroscedasticity, and improve model performance.
-- Encoding categorical features
+- Applying log, sqrt, box-cox, yeojohnson, etc transformations to numerical features to reduce skew, address heteroskedasticity, and improve model performance.
+- Categorical feature encoding
 - Standardization and normalization
 
 
 
 ## $${\color{#00A5A8}\text{2.1 Transformation Types}}$$
-In order to apply log, sqrt, and other various transformations to our numerical features, we'll take a look at some probability plots.
+Before applying log, sqrt, and other various transformations to our numerical features, we'll first take a look at some probability plots.
 
 
 <details>
@@ -236,11 +239,11 @@ In order to apply log, sqrt, and other various transformations to our numerical 
 </div>
 </details>
 
-Some features such as previous qualification (grade) and admission grade fit well, with r^2 = 0.98 for both. This isn't the case for many other features and they may benefit from transformations. Another ting to note is the abundance of zero-inflated features. We can create a binary indicator for each of these features which may assist our model.
+Some features such as previous qualification (grade) and admission grade already fit well, with r^2 = 0.98 for both. This isn't the case for many other features however and they may benefit from transformations. Another thing to note is the abundance of zero-inflated features. We can create a binary indicator for each of these which may assist our model.
 
-For the sake of time, a quic kscript was written to assess a range of transformations on our numeric features, but excluding both boolean features and features to be later encoded.
+For the sake of time, a quick script was written to assess a range of transformations on selected numeric features, which excluded both boolean features and features to be later encoded.
 
-**Note:** Some transformations require non-negative or strictly ppsitive input values. A filter was applied to ensure transformations were only used where approprate. While each row appears to contain a transformation value, some of these values are simply a result of no transformation being applied.
+**Note:** Some transformations require non-negative or strictly positive input values. A filter was applied to ensure transformations were only used where approprate. While each row appears to contain a transformation value, some of these values are simply a placeholder, where no transformation has been applied.
 
 The results were as follows:
 
@@ -255,9 +258,9 @@ The results were as follows:
 A few transformations are shown to provide marginal improvements. Further analysis should be performed before deciding to apply a transformation, particuarly in real world applications.
 
 ## $${\color{#00A5A8}\text{2.2 Handling Categorical Data}}$$
-Most machine learning models don't play nicely with categorical data, with newer algorithms such as Catboost being the exception. While our data doesn't contain any categorical data types, it does contain categories that have been represented as integers. While not always the case, it's generally beneficial to encode such features. Numerous methods of encoding exist, and like most things in machine learning, experimentation is the only way to find the best representation.
+Most machine learning models don't play nicely with categorical data, with newer algorithms such as Catboost being the exception. While our data doesn't contain any categorical data types, it does contain categories represented as integers. Though not always the case, it's generally beneficial to encode such features. Numerous methods of encoding exist, and like most things in machine learning, experimentation is the only way to find the best representation.
 
-For example, instead of representing mother's/father's qualification as arbitrarily ordered numbers, we could perhaps encode them ordinally, with smaller numbers for lower levels of qualification, and larger for higher. We could also consider binning the qualification levels, as a parent with a masters as opposed to a phd is quite unlikely to affect our model's predictive ability.
+As an example, rather than representing mother's/father's qualification as arbitrarily ordered numbers, we could instead encode them ordinally, with smaller numbers for lower levels of qualification, and larger for higher. We could also consider binning the qualification levels, as a parent having a masters as opposed to a phd is quite unlikely to reduce our model's predictive ability, and may even help in preventing overfitting.
 
 On the other hand, a feature such as course is unlikely to have a specific order, and may benefit from simple one-hot-encoding.
 
