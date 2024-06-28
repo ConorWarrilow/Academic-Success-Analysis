@@ -106,47 +106,61 @@ def numeric_description(data: pd.DataFrame, target_col: str, styling = False, gr
 
 
 
-def correlation_values(data: pd.DataFrame, target: str, column_text_size = 10, width_value = 1000, height_value = 1000):
-    pearson_corr = (
-        data.drop(target, axis=1).corr(numeric_only=True, method="pearson").round(2)
-    )
-    mask = np.triu(np.ones_like(pearson_corr, dtype=bool))
-    lower_triangular_corr = (
-        pearson_corr.mask(mask)
-        .dropna(axis="index", how="all")
-        .dropna(axis="columns", how="all")
-    )
 
-    heatmap = go.Heatmap(
-        z=lower_triangular_corr,
-        x=lower_triangular_corr.columns,
-        y=lower_triangular_corr.index,
-        text=lower_triangular_corr.fillna(""),
-        texttemplate="%{text}",
-        xgap=1,
-        ygap=1,
-        showscale=True,
-        colorscale=color_map,
-        colorbar_len=1.02,
-        hoverinfo="none",
-    )
-    fig = go.Figure(heatmap)
-    fig.update_layout(
-        font_color=FONT_COLOR,
-        title="Correlation Matrix (Pearson) - Lower Triangular",
-        title_font_size=18,
-        plot_bgcolor=BACKGROUND_COLOR,
-        paper_bgcolor=BACKGROUND_COLOR,
-        width=width_value,
-        height=height_value,
-        xaxis_showgrid=False,
-        yaxis_showgrid=False,
-        yaxis_autorange="reversed",
-    )
-    fig.update_xaxes(tickfont=dict(size=column_text_size))
-    fig.update_yaxes(tickfont=dict(size=column_text_size))
-    fig.show()
-    return pearson_corr, lower_triangular_corr
+
+
+def correlation_values(data: pd.DataFrame, target: str, corr_type = 'pearson', plot = True, column_text_size=10, width_value=1000, height_value=1000):
+    if corr_type == 'pearson' or corr_type == 'spearman':
+    # Compute Spearman correlation
+        corr = (
+        data.drop(target, axis=1).corr(method = corr_type).round(2)
+        )
+
+        mask = np.triu(np.ones_like(corr, dtype=bool))
+        lower_triangular_corr = (
+            corr.mask(mask)
+            .dropna(axis="index", how="all")
+            .dropna(axis="columns", how="all")
+        )
+        if plot == True:
+            heatmap = go.Heatmap(
+                z=lower_triangular_corr,
+                x=lower_triangular_corr.columns,
+                y=lower_triangular_corr.index,
+                text=lower_triangular_corr.fillna(""),
+                texttemplate="%{text}",
+                xgap=1,
+                ygap=1,
+                showscale=True,
+                colorscale= color_map,  # Specify the color map or use 'color_map' if defined
+                colorbar_len=1.02,
+                hoverinfo="none",
+            )
+            fig = go.Figure(heatmap)
+            fig.update_layout(
+                font_color=FONT_COLOR,  # Specify the font color or use 'FONT_COLOR' if defined
+                title=f"Correlation Matrix ({corr_type}) - Lower Triangular",
+                title_font_size=18,
+                plot_bgcolor = BACKGROUND_COLOR,  # Specify the background color or use 'BACKGROUND_COLOR' if defined
+                paper_bgcolor = BACKGROUND_COLOR,  # Specify the background color or use 'BACKGROUND_COLOR' if defined
+                width=width_value,
+                height=height_value,
+                xaxis_showgrid=False,
+                yaxis_showgrid=False,
+                yaxis_autorange="reversed",
+            )
+            fig.update_xaxes(tickfont=dict(size=column_text_size))
+            fig.update_yaxes(tickfont=dict(size=column_text_size))
+            fig.show()
+        return corr, lower_triangular_corr
+
+    else: 
+        print(f"{corr_type} is not a valid input. Accepted inputs are 'pearson' or 'spearman'")
+        return None, None
+
+
+
+
 
 
 

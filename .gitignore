@@ -8,3 +8,8 @@ Submissions/
 FeatureEngineering.ipynb
 optuna.ipynb
 random.ipynb
+pipelines.ipynb
+old-plots.ipynb
+top_12_features.csv
+t-SNE.ipynb
+results_df.csv

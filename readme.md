@@ -1,20 +1,12 @@
 # Academpic Success Analysis
 
-## Project Overview
+Leaderboard highscore: 0.84061
 
-This Repo contains x parts:
+Personal Highscore: 0.83356
 
-1. EDA
-   - Basic Exploration
-   - Visualization
-2. Feature Selection
-   - Impurity Reduction Feature Importance
-   - Permutation Feature Importance
-   - Sequential Selection for Feature Importance
-3. Feature Engineering
-   - Type 1
-   - Type 2
-   - Type 3
-4. Machine Learning
-   - Pipe
-   - Model
+## EDA
+
+leave the binary columns in the prob plot, makes it easy to visualize the balance between the two values
+
+
+https://distill.pub/2016/misread-tsne/

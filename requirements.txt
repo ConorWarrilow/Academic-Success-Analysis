@@ -12,3 +12,5 @@ seaborn==0.13.2
 lightgbm==4.4.0
 mlxtend==0.23.1
 catboost==1.2.5
+optuna==3.6.1
+artemis==0.1.4
