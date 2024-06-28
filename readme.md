@@ -4,7 +4,7 @@
 The transition to higher education can be challenging for many students, and many factors can influence academic performance. As a result, some students may struggle to keep up with the demands of their coursework, leading to underperformance or dropping out. Below we will explore the usage of machine learning for early detection of students on the path to dropping out, allowing us to catch problems early and provide students with intervention strategies on a person-to-person basis.
 
 
-[link](https://github.com/ConorWarrilow/Academic-Success-Analysis/edit/main/readme.md#color00a5a8text52-choosing-the-right-model)
+[link](https://github.com/ConorWarrilow/Academic-Success-Analysis/main/readme.md#color00a5a8text52-choosing-the-right-model)
 
 
 # $${\color{#E0581C}\text{Results Summary}}$$
