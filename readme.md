@@ -42,6 +42,8 @@ The main goals are to:
 - 1.1 The Basics
 - 1.2 Correlations
 - 1.3 Kde and Cumulative Kde Plots + Analysis
+- 1.4 Binary Feature Analysis
+- 1.5 Other EDA
 
 **2. Feature Transformations**
 - 2.1 Transformation Types
@@ -127,7 +129,7 @@ Next, we'll take a look at the (pearson) feature correlations:
 <details>
   <summary>$${\color{#72B3A2}\text{View Correlation Matrix}}$$</summary>
 <div align="center">
-	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/a198ad4b-735e-40ea-92c9-6aff151d9cd2">
+	<img width = "1200" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/a198ad4b-735e-40ea-92c9-6aff151d9cd2">
 </div>
 </details>
 
@@ -168,7 +170,7 @@ Next We'll look at the kde plots for our numeric features.
 <details>
   <summary>$${\color{#72B3A2}\text{View Kde Plots}}$$</summary>
 <div align="center">
-	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/a894ab22-bb76-4252-8916-9ee1a7a926eb">
+	<img width = "1200" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/a894ab22-bb76-4252-8916-9ee1a7a926eb">
 </div>
 </details>
 
@@ -184,9 +186,26 @@ Age at enrollment shows older students as being much more likely to dropout, wit
 <details>
   <summary>$${\color{#72B3A2}\text{View Cumulative Kde Plots}}$$</summary>
 <div align="center">
-	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/3cd02fdd-a770-4fad-a62e-9b3a061587ba">
+	<img width = "1200" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/3cd02fdd-a770-4fad-a62e-9b3a061587ba">
 </div>
 </details>
+
+
+## $${\color{#00A5A8}\text{1.4 Binary Feature Analysis}}$$
+To Wrap up our EDA We'll take a look at our binary Features using sunburst plots. Unfortunately, they're no longer interactive as images, which is half the value (and 100% of the fun) of a sunburst plot, but we'll make do.
+
+
+<details>
+  <summary>$${\color{#72B3A2}\text{View Sunburst Plots}}$$</summary>
+<div align="center">
+	<img width = "1200" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/26e5e7fa-5e61-4351-aacd-3deba90bae6d">
+</div>
+</details>
+
+
+
+## $${\color{#00A5A8}\text{1.5 Other EDA}}$$
+
 
 
 
@@ -255,7 +274,7 @@ lastly, we'll apply normalization and standardization, generally referred to as 
 <details>
   <summary>$${\color{#72B3A2}\text{View Impurity-Based Results}}$$</summary>
 <div align="center">
-	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/38b8f5fe-a77b-4a3b-95f2-9826be62e38f">
+	<img width = "1200" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/38b8f5fe-a77b-4a3b-95f2-9826be62e38f">
 </div>
 
  <div align="center">
@@ -273,30 +292,40 @@ lastly, we'll apply normalization and standardization, generally referred to as 
 <details>
   <summary>$${\color{#72B3A2}\text{View Permutation-Based Results}}$$</summary>
 <div align="center">
-	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/fe550290-0092-4e2e-8fac-15acb9a5f2bc">
+	<img width = "1200" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/fe550290-0092-4e2e-8fac-15acb9a5f2bc">
+</div>
+
+ <div align="center">
+	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/5db741a9-1c24-427b-8b44-ec842e95aee6">
 </div>
 </details>
 
 
+
+
+## $${\color{#00A5A8}\text{3.3 Feature Importance Summary}}$$
 
 <details>
   <summary>$${\color{#72B3A2}\text{View Feature Importance Summary Table}}$$</summary>
 <div align="center">
 	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/9acb8d6e-dd6f-47d7-aee9-8b997414a123">
 </div>
-
-<div align="center">
-	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/5db741a9-1c24-427b-8b44-ec842e95aee6">
-</div>
-
-
- 
 </details>
 
 
 
+## $${\color{#00A5A8}\text{3.4 Altermative Methods of Feature Importance}}$$
 
-## $${\color{#00A5A8}\text{3.3 Altermative Methods of Feature Importance}}$$
+
+
+
+
+
+
+
+
+
+
 
 
 
