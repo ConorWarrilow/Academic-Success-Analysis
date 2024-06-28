@@ -16,7 +16,7 @@ Kaggle is a global online platform designed for data scientists and machine lear
 
 My final model obtained an accuracy score of 83.82%, just 0.31% shy of the leaderboard highscore, putting me in the top 8% of the leaderboard out of over 2500 participants. My main focus however was on EDA and optimizing the recall score for the dropout class, which can be seen below. By altering class weights, recall scores of up to 90% are realistically possible with a small sacrifice to precison. 
 
-To conclude, the above results indicate the potential for machine learning to be a highly effective strategy in the early detecting of students at risk of dropping out.
+To conclude, the above results indicate the potential for machine learning to be a highly effective strategy for the early detection of students at risk of dropping out.
 
 
 
@@ -220,9 +220,10 @@ The results were as follows:
 <details>
   <summary>$${\color{#72B3A2}\text{View Transformation Results}}$$</summary>
 <div align="center">
-	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/e4efe42c-28d3-45fd-8941-243496bfd260">
+	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/ee0e2827-5b0e-4cd6-90e0-b0e2cc5c5ab9">
 </div>
 </details>
+
 
 A few transformations are shown to provide marginal improvements. Further analysis should be performed before deciding to apply a transformation, particuarly in real world applications.
 
@@ -231,10 +232,12 @@ Most machine learning models don't play nicely with categorical data, with Catbo
 
 For example, instead of representing mother's/father's qualification as arbitrarily ordered numbers, we could perhaps encode them ordinally, with smaller numbers for lower levels of qualification, and larger for higher. We could also consider binning the qualification levels, as a parent having a masters as opposed to a phd is quite unlikely to affect our model's predictive ability.
 
+On the other hand, a feature such as course is unlikely to have a specific order, and may benefit from one-hot-encoding.
+
 
 
 ## $${\color{#00A5A8}\text{2.3 Normalization and Standardization}}$$
-
+lastly, we'll apply normalization and standardization, often simply referred to as 'scaling'. The most common type of scaling is to center the mean of each feature at 0 (standardization), and to transform each feature to have a standard deviation of 1 (normalization). Again, this stage requires experimentation as different datasets will perform better with different transformations.
 
 
 
