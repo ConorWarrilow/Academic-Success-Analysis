@@ -1,6 +1,23 @@
 # $${\color{#00D8DB}\text{Machine Learning For Early Detection of} \space \color{#00D8DB}\text{Students at} \space \color{#00D8DB}\text{Risk}}$$
 
+
 The transition to higher education can be challenging for many students, and many factors can influence academic performance. As a result, some students may struggle to keep up with the demands of their coursework, leading to increased dropout rates and underperformance. The use of machine learning for Early detection of students on the path to dropping out can help catch problems early and allow universities to implement intervention strategies on a student-to-student basis.
+
+
+
+
+
+
+# $${\color{#00D8DB}\text{Summary}}$$
+This dataset was part of a kaggle competition running through 1/6/2024 to 1/7/2024.
+
+<details>
+  <summary>$${\color{#F2EDD8}\text{What is kaggle?}}$$</summary>
+	<br/>
+Kaggle is a global online platform designed for data scientists and machine learning practitioners, where individuals or teams compete to solve complex data problems. Kaggle competitions involve leaderboards, with large prices (often over $10,000) rewarded to the top participant/team.
+</details>
+
+My final model was able to obtain an accuracy score of 83.82%, just 0.31% shy of the (current) leaderboard highscore, putting me in the top 8% of the leaderboard out of over 2500 participants. My main focus however was on EDA and optimizing the recall score for the dropout class, which can be seen below.
 
 
 
@@ -49,7 +66,7 @@ Several Integer columns appear appropriate for one-hot-encoding.
 
 
 <details>
-  <summary>$${\color{#F2EDD8}\text{View }}$$</summary>
+  <summary>$${\color{#F2EDD8}\text{View Class Imbalance}}$$</summary>
 <div align="center">
 	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/ca33cee2-824c-412c-bd22-0b3270f4d39a">
 </div>
@@ -210,7 +227,7 @@ Age at enrollment shows older students as being much more likely to dropout, wit
 
 
 
-## $${\color{#00A5A8}\text{5.2 Selecting the Right Model}}$$
+## $${\color{#00A5A8}\text{5.2 Choosing the Right Model}}$$
 
 ## $${\color{#00A5A8}\text{5.3 Hyperparameter Tuning}}$$
 
