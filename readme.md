@@ -39,7 +39,7 @@ The main goals are to:
 
 
 
-[**1. EDA**](bunch of text)
+**1. EDA**
 
 - 1.1 The Basics
 - 1.2 Correlations
@@ -59,7 +59,7 @@ The main goals are to:
 
 **5. Machine Learning**
 - 5.1 Building a Pipeline
-- 5.2 Selecting the model/s
+- 5.2 Choosing the Right Model
 - 5.3 Hyperparameter Tuning
 - 5.4 Ensemble Models
 - 5.5 Ensemble Stacking
@@ -121,6 +121,8 @@ The target classes are imbalanced, although it's unlikely to be problematic. Var
 
 ### Correlation Matrix
 
+Next, we'll take a look at the (pearson) feature correlations:
+
 <details>
   <summary>$${\color{#72B3A2}\text{View Correlation Matrix}}$$</summary>
 <div align="center">
@@ -128,7 +130,8 @@ The target classes are imbalanced, although it's unlikely to be problematic. Var
 </div>
 </details>
 
-bunch of text
+A few features are highly correlated, particuarly those involving curricular units. As we'll likelyt be using tree based models, this isn't necessarily a problem when it comes to model accuracy, however we still need to be mindful about these features when assessing feature importance. It would be wise to either drop certain features, aggregate highly correlated features, or to simply take these correlated features into account.
+
 
 ### Dendogram
 We can plot a dendogram to better visualize the correlations (again, pearson in this case) between features:
@@ -269,7 +272,7 @@ Age at enrollment shows older students as being much more likely to dropout, wit
 
 
 
-## $${\color{#00A5A8}\text{5.2 Selecting the Model/s}}$$
+## $${\color{#00A5A8}\text{5.2 Choosing the Right Model}}$$
 
 ## $${\color{#00A5A8}\text{5.3 Hyperparameter Tuning}}$$
 
