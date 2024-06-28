@@ -194,7 +194,6 @@ Age at enrollment shows older students as being much more likely to dropout, wit
 ## $${\color{#00A5A8}\text{1.4 Binary Feature Analysis}}$$
 To Wrap up our EDA We'll take a look at our binary Features using sunburst plots. Unfortunately, they're no longer interactive as images, which is half the value (and 100% of the fun) of a sunburst plot, but we'll make do.
 
-
 <details>
   <summary>$${\color{#72B3A2}\text{View Sunburst Plots}}$$</summary>
 <div align="center">
@@ -202,9 +201,16 @@ To Wrap up our EDA We'll take a look at our binary Features using sunburst plots
 </div>
 </details>
 
+There seem to be many valuable insights from the binary features. The most notable include:
 
+- 82% of scholarship holders graduate, while only 36% of those without scholarships graduate
+- 94% of students without up to date fees drop out, while only 26% of students with up to date fees drop out
+- Gender, debtor, and attendance style also have large differences in their class values.
 
 ## $${\color{#00A5A8}\text{1.5 Other EDA}}$$
+While we covered a good few topics, we barely scratched the surface of EDA.
+
+Steps such as bivariate analysis, detecting outliers, and feature interactions could also be explored to better understand the data.
 
 
 
