@@ -128,6 +128,7 @@ The target classes are imbalanced, although it's unlikely to be problematic. Var
 </div>
 </details>
 
+bunch of text
 
 ### Dendogram
 We can plot a dendogram to better visualize the correlations (again, pearson in this case) between features:
