@@ -1,32 +1,35 @@
 # $${\color{#00D8DB}\text{Machine Learning For Early Detection of} \space \color{#00D8DB}\text{Students at} \space \color{#00D8DB}\text{Risk}}$$
 
 
-The transition to higher education can be challenging for many students, and many factors can influence academic performance. As a result, some students may struggle to keep up with the demands of their coursework, leading to increased dropout rates and underperformance. The use of machine learning for Early detection of students on the path to dropping out can help catch problems early and allow universities to implement intervention strategies on a student-to-student basis.
+The transition to higher education can be challenging for many students, and many factors can influence academic performance. As a result, some students may struggle to keep up with the demands of their coursework, leading to underperformance or dropping out. Below we will explore the usage of machine learning for early detection of students on the path to dropping out, allowing us to catch problems early and provide students with intervention strategies on a person-to-person basis.
 
 
 
 
 
-
-# $${\color{#00D8DB}\text{Summary}}$$
+# $${\color{#E0581C}\text{Results Summary}}$$
 This dataset was part of a kaggle competition running through 1/6/2024 to 1/7/2024.
 
 <details>
-  <summary>$${\color{#F2EDD8}\text{What is kaggle?}}$$</summary>
+  <summary>$${\color{#72B3A2}\text{What is kaggle?}}$$</summary>
 	<br/>
 Kaggle is a global online platform designed for data scientists and machine learning practitioners, where individuals or teams compete to solve complex data problems. Kaggle competitions involve leaderboards, with large prices (often over $10,000) rewarded to the top participant/team.
 </details>
 
-My final model was able to obtain an accuracy score of 83.82%, just 0.31% shy of the (current) leaderboard highscore, putting me in the top 8% of the leaderboard out of over 2500 participants. My main focus however was on EDA and optimizing the recall score for the dropout class, which can be seen below.
+My final model obtained an accuracy score of 83.82%, just 0.31% shy of the leaderboard highscore, putting me in the top 8% of the leaderboard out of over 2500 participants. My main focus however was on EDA and optimizing the recall score for the dropout class, which can be seen below. By altering class weights, recall scores of up to 90% are realistically possible with a small sacrifice to precison. 
+
+To conclude, the above results indicate the potential for machine learning to be a highly effective strategy in the early detecting of students at risk of dropping out.
+
 
 
 
 
 # $${\color{#00D8DB}\text{Goals}}$$
 
-1. To explore and assess the feature sthat may indicate whether a student is on the path to dropping out, gradiating, or remaining enrolled by the end of the normal duration of their course.
-2. To construct a machine learning model aimed towards the early detection of students displaying the signs associated with dropping their course.
-3. Analyze the pitfalls of a purely machine learning based approach and determine what improvements can be made to increase our rate of early detection
+The main goals are to:
+1. Explore and assess the features that may indicate if a student is on the path to dropping out, graduating, or remaining enrolled by the end of the normal duration of their course.
+2. Construct a machine learning model aimed towards the early detection of students displaying the signs associated with dropping their course.
+3. Analyze the pitfalls of a purely machine learning based approach, particuarly one that optimizes for accuracy, and determine what improvements could be made to increase our rate of early detection.
 
    
 
@@ -35,7 +38,45 @@ My final model was able to obtain an accuracy score of 83.82%, just 0.31% shy of
 # $${\color{#00D8DB}\text{Table of Contents}}$$
 
 
-The data set provided contains a total of 36 features relating to academic performance age gender attendant style Marshall status course type parent qualifications or occupations and various social economic metrics.
+
+[**1. EDA**](bunch of text)
+
+- 1.1 The Basics
+- 1.2 Correlations
+- 1.3 Kde and Cumulative Kde Plots + Analysis
+
+**2. Feature Transformations**
+- 2.1 Transformation Types
+- 2.2 Data Types
+- 2.3 Normalization and Standardization
+
+**3. Feature Importance and Selection**
+  - 3.1 Impurity Based Feature Importance
+  - 3.2 Permutation Based Feature Importance
+  - 3.3 Other Methods of Evaluation
+
+**4. Feature Engineering**
+
+**5. Machine Learning**
+- 5.1 Building a Pipeline
+- 5.2 Selecting the model/s
+- 5.3 Hyperparameter Tuning
+- 5.4 Ensemble Models
+- 5.5 Ensemble Stacking
+
+ **6. Results**
+
+
+ **7. Further Analysis and discussion**
+- 7.1 t-SNE
+- 7.2 Changing our Metric
+- Additional Features
+
+
+
+# $${\color{#00D8DB}\text{The Dataset}}$$
+
+The data set provided contains a total of 36 features relating to academic performance, age, gender, attendance style, martial status, course type, parent qualifications/occupations, and various social economic metrics.
 
 A full list of [features and their definitons can be found here.](https://archive.ics.uci.edu/dataset/697/predict+students+dropout+and+academic+success)
 
@@ -50,7 +91,7 @@ The situation is a multiclass classification, with 3 classes to predict.
 
 # $${\color{#00D8DB}\text{1. Exploratory Data Analysis}}$$
 
-## $${\color{#00A5A8}\text{1.1 The Basics}}$$
+## $${\color{#00A5A8}\text{}}$$
 
 ### Initial EDA
 - No missing/null values
@@ -62,11 +103,11 @@ The situation is a multiclass classification, with 3 classes to predict.
 ### Data Types
 Several Integer columns appear appropriate for one-hot-encoding.
 
-###Target Class Imbalance
-
+### Target Class Imbalance
+The target classes are imbalanced, although it's unlikely to be problematic. Various Undersampling/oversampling techniques such as SMOTE could be explored.
 
 <details>
-  <summary>$${\color{#F2EDD8}\text{View Class Imbalance}}$$</summary>
+  <summary>$${\color{#72B3A2}\text{View Class Imbalance}}$$</summary>
 <div align="center">
 	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/ca33cee2-824c-412c-bd22-0b3270f4d39a">
 </div>
@@ -81,7 +122,7 @@ Several Integer columns appear appropriate for one-hot-encoding.
 ### Correlation Matrix
 
 <details>
-  <summary>$${\color{#F2EDD8}\text{View Correlation Matrix}}$$</summary>
+  <summary>$${\color{#72B3A2}\text{View Correlation Matrix}}$$</summary>
 <div align="center">
 	<img width = "600" src="">
 </div>
@@ -91,7 +132,7 @@ Several Integer columns appear appropriate for one-hot-encoding.
 ### Dendogram
 We can plot a dendogram to better visualize the correlations (again, pearson in this case) between features:
 <details>
-  <summary>$${\color{#F2EDD8}\text{View Dendogram}}$$</summary>
+  <summary>$${\color{#72B3A2}\text{View Dendogram}}$$</summary>
 <div align="center">
 	<img width = "600" src="">
 </div>
@@ -104,7 +145,7 @@ While the dendogram doesn't tell us anything new, its a useful way to visualize 
 ### High Correlations
 Finally, we can plot a table containing any features with correlation values over a certain threshold (0.8 in this case). We'll keep an eye on these later when we assess feature importance.
 <details>
-  <summary>$${\color{#F2EDD8}\text{View High Correlations Table}}$$</summary>
+  <summary>$${\color{#72B3A2}\text{View High Correlations Table}}$$</summary>
 <div align="center">
 	<img width = "600" src="">
 </div>
@@ -118,7 +159,7 @@ Finally, we can plot a table containing any features with correlation values ove
 Next We'll look at the kde plots for our numeric features.
 
 <details>
-  <summary>$${\color{#F2EDD8}\text{View Kde Plots}}$$</summary>
+  <summary>$${\color{#72B3A2}\text{View Kde Plots}}$$</summary>
 <div align="center">
 	<img width = "600" src="">
 </div>
@@ -133,7 +174,7 @@ Age at enrollment shows older students as being much more likely to dropout, wit
 
 
 <details>
-  <summary>$${\color{#F2EDD8}\text{View Cumulative Kde Plots}}$$</summary>
+  <summary>$${\color{#72B3A2}\text{View Cumulative Kde Plots}}$$</summary>
 <div align="center">
 	<img width = "600" src="">
 </div>
@@ -171,7 +212,7 @@ Age at enrollment shows older students as being much more likely to dropout, wit
 
 
 <details>
-  <summary>$${\color{#F2EDD8}\text{View Impurity-Based Results}}$$</summary>
+  <summary>$${\color{#72B3A2}\text{View Impurity-Based Results}}$$</summary>
 <div align="center">
 	<img width = "600" src="">
 </div>
@@ -182,7 +223,7 @@ Age at enrollment shows older students as being much more likely to dropout, wit
 
 
 <details>
-  <summary>$${\color{#F2EDD8}\text{View Permutation-Based Results}}$$</summary>
+  <summary>$${\color{#72B3A2}\text{View Permutation-Based Results}}$$</summary>
 <div align="center">
 	<img width = "600" src="">
 </div>
@@ -193,7 +234,7 @@ Age at enrollment shows older students as being much more likely to dropout, wit
 
 
 <details>
-  <summary>$${\color{#F2EDD8}\text{View Feature Importance Summary Table}}$$</summary>
+  <summary>$${\color{#72B3A2}\text{View Feature Importance Summary Table}}$$</summary>
 <div align="center">
 	<img width = "600" src="">
 </div>
@@ -227,12 +268,13 @@ Age at enrollment shows older students as being much more likely to dropout, wit
 
 
 
-## $${\color{#00A5A8}\text{5.2 Choosing the Right Model}}$$
+## $${\color{#00A5A8}\text{5.2 Selecting the Model/s}}$$
 
 ## $${\color{#00A5A8}\text{5.3 Hyperparameter Tuning}}$$
 
-## $${\color{#00A5A8}\text{5.4 Stacked Ensembles}}$$
+## $${\color{#00A5A8}\text{5.4 Ensemble Models}}$$
 
+## $${\color{#00A5A8}\text{5.4 Stacked Ensembles}}$$
 
 
 # $${\color{#00D8DB}\text{6. Results}}$$
@@ -242,11 +284,11 @@ Age at enrollment shows older students as being much more likely to dropout, wit
 # $${\color{#00D8DB}\text{7. Further Analysis}}$$
 
 
+## $${\color{#00A5A8}\text{7.1 t-SNE}}$$
 
+## $${\color{#00A5A8}\text{7.2 Changing our Metric}}$$
 
-
-
-
+## $${\color{#00A5A8}\text{7.2 Additional Features}}$$
 
 
 
