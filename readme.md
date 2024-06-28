@@ -203,7 +203,7 @@ In order to apply log, sqrt, and other various transformations to our numerical 
 
 
 <details>
-  <summary>$${\color{#72B3A2}\text{View Impurity-Based Results}}$$</summary>
+  <summary>$${\color{#72B3A2}\text{View Probability Plots}}$$</summary>
 <div align="center">
 	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/e4efe42c-28d3-45fd-8941-243496bfd260">
 </div>
@@ -217,10 +217,19 @@ For the sake of time, a quic kscript was written to assess a range of transforma
 
 The results were as follows:
 
+<details>
+  <summary>$${\color{#72B3A2}\text{View Transformation Results}}$$</summary>
+<div align="center">
+	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/e4efe42c-28d3-45fd-8941-243496bfd260">
+</div>
+</details>
 
+A few transformations are shown to provide marginal improvements. Further analysis should be performed before deciding to apply a transformation, particuarly in real world applications.
 
 ## $${\color{#00A5A8}\text{2.2 Handling Categorical Data}}$$
+Most machine learning models don't play nicely with categorical data, with Catbost being the main reason I said 'most'. While our data doesn't contain any categorical features, it does contain categories that have been represented as integers. While not always the case, it's often beneficial to encode such features. Numerous methods of encoding exist, and like most things in machine learning, experimentation is the only way to find the best strategy.
 
+For example, instead of representing mother's/father's qualification as arbitrarily ordered numbers, we could perhaps encode them ordinally, with smaller numbers for lower levels of qualification, and larger for higher. We could also consider binning the qualification levels, as a parent having a masters as opposed to a phd is quite unlikely to affect our model's predictive ability.
 
 
 
