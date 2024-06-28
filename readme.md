@@ -11,7 +11,7 @@ This dataset was part of a kaggle competition running through 1/6/2024 to 1/7/20
 <details>
   <summary>$${\color{#72B3A2}\text{What is kaggle?}}$$</summary>
 	<br/>
-Kaggle is a global online platform designed for data scientists and machine learning practitioners, where individuals or teams compete to solve complex data problems. Kaggle competitions involve leaderboards, with large prices (often over $10,000) rewarded to the top participant/team.
+Kaggle is a global online platform designed for data scientists and machine learning practitioners, where individuals or teams compete to solve complex data problems. Kaggle competitions involve leaderboards, with large prices (often over $10,000) rewarded to the top participants/teams.
 </details>
 
 My final model obtained an accuracy score of 83.82%, just 0.31% shy of the leaderboard highscore, putting me in the top 8% of the leaderboard out of over 2500 participants. My main focus however was on EDA and optimizing the recall score for the dropout class, which can be seen below. By altering class weights, recall scores of up to 90% are realistically possible with a small sacrifice to precison. 
@@ -84,7 +84,9 @@ The situation is a multiclass classification, with 3 classes to predict.
 **Target value Labels:**
 
 0 - Dropout
+
 1 - Graduate
+
 2 - Enrolled
 
 
@@ -103,7 +105,7 @@ The situation is a multiclass classification, with 3 classes to predict.
 Several Integer columns appear appropriate for one-hot-encoding.
 
 ### Target Class Imbalance
-The target classes are imbalanced, although it's unlikely to be problematic. Various Undersampling/oversampling techniques such as SMOTE could be explored.
+The target classes are imbalanced, as can be seen in the below plot.
 
 <details>
   <summary>$${\color{#72B3A2}\text{View Class Imbalance}}$$</summary>
@@ -113,7 +115,7 @@ The target classes are imbalanced, although it's unlikely to be problematic. Var
 </details>
 
 
-
+Various Undersampling/oversampling techniques such as SMOTE could be explored, however the imbalance isn't too extreme and likely won't be a problem.
 
 
 ## $${\color{#00A5A8}\text{1.2 Correlations}}$$
@@ -228,16 +230,16 @@ The results were as follows:
 A few transformations are shown to provide marginal improvements. Further analysis should be performed before deciding to apply a transformation, particuarly in real world applications.
 
 ## $${\color{#00A5A8}\text{2.2 Handling Categorical Data}}$$
-Most machine learning models don't play nicely with categorical data, with Catbost being the main reason I said 'most'. While our data doesn't contain any categorical features, it does contain categories that have been represented as integers. While not always the case, it's often beneficial to encode such features. Numerous methods of encoding exist, and like most things in machine learning, experimentation is the only way to find the best strategy.
+Most machine learning models don't play nicely with categorical data, with newer algorithms such as Catboost being the exception. While our data doesn't contain any categorical data types, it does contain categories that have been represented as integers. While not always the case, it's generally beneficial to encode such features. Numerous methods of encoding exist, and like most things in machine learning, experimentation is the only way to find the best representation.
 
-For example, instead of representing mother's/father's qualification as arbitrarily ordered numbers, we could perhaps encode them ordinally, with smaller numbers for lower levels of qualification, and larger for higher. We could also consider binning the qualification levels, as a parent having a masters as opposed to a phd is quite unlikely to affect our model's predictive ability.
+For example, instead of representing mother's/father's qualification as arbitrarily ordered numbers, we could perhaps encode them ordinally, with smaller numbers for lower levels of qualification, and larger for higher. We could also consider binning the qualification levels, as a parent with a masters as opposed to a phd is quite unlikely to affect our model's predictive ability.
 
-On the other hand, a feature such as course is unlikely to have a specific order, and may benefit from one-hot-encoding.
+On the other hand, a feature such as course is unlikely to have a specific order, and may benefit from simple one-hot-encoding.
 
 
 
 ## $${\color{#00A5A8}\text{2.3 Normalization and Standardization}}$$
-lastly, we'll apply normalization and standardization, often simply referred to as 'scaling'. The most common type of scaling is to center the mean of each feature at 0 (standardization), and to transform each feature to have a standard deviation of 1 (normalization). Again, this stage requires experimentation as different datasets will perform better with different transformations.
+lastly, we'll apply normalization and standardization, generally referred to as 'scaling'. The most common type of scaling is to center the mean of each feature at 0 (standardization), and to transform each feature to have a standard deviation of 1 (normalization). Again, this stage requires experimentation as different datasets will perform better with different scalers.
 
 
 
