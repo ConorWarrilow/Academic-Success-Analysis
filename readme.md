@@ -232,7 +232,7 @@ In order to apply log, sqrt, and other various transformations to our numerical 
 <details>
   <summary>$${\color{#72B3A2}\text{View Probability Plots}}$$</summary>
 <div align="center">
-	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/e4efe42c-28d3-45fd-8941-243496bfd260">
+	<img width = "900" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/e4efe42c-28d3-45fd-8941-243496bfd260">
 </div>
 </details>
 
@@ -247,7 +247,7 @@ The results were as follows:
 <details>
   <summary>$${\color{#72B3A2}\text{View Transformation Results}}$$</summary>
 <div align="center">
-	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/ee0e2827-5b0e-4cd6-90e0-b0e2cc5c5ab9">
+	<img width = "900" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/ee0e2827-5b0e-4cd6-90e0-b0e2cc5c5ab9">
 </div>
 </details>
 
