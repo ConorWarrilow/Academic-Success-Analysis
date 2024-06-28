@@ -191,16 +191,25 @@ Age at enrollment shows older students as being much more likely to dropout, wit
 
 
 # $${\color{#00D8DB}\text{2. Feature Transformations}}$$
-Before we can begin the machine learning stage, our features need to undergo transformations. Feature transformations are a crucial preprocessing step, improving model performance by making patterns more visible and easier for the model to extract information. Below we'll cover a few variations of feature transformations relevant to our dataset.
-
-
-
-
+Before we can begin the machine learning stage, our features need to undergo transformations. Feature transformations are a crucial preprocessing step. For our specific case, the transformations we'll cover are:
+- Applying log, sqrt, box-cox, yeojohnson, etc to numerical features to reduce skew, address heteroscedasticity, and improve model performance.
+- Encoding categorical features
+- Standardization and normalization
 
 
 
 ## $${\color{#00A5A8}\text{2.1 Transformation Types}}$$
+In order to apply log, sqrt, and other various transformations to our numerical features, we'll take a look at some probability plots.
 
+
+<details>
+  <summary>$${\color{#72B3A2}\text{View Impurity-Based Results}}$$</summary>
+<div align="center">
+	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/e4efe42c-28d3-45fd-8941-243496bfd260">
+</div>
+
+
+</details>
 ## $${\color{#00A5A8}\text{2.2 Handling Categorical Data}}$$
 
 ## $${\color{#00A5A8}\text{2.3 Normalization and Standardization}}$$
