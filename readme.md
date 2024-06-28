@@ -207,10 +207,22 @@ In order to apply log, sqrt, and other various transformations to our numerical 
 <div align="center">
 	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/e4efe42c-28d3-45fd-8941-243496bfd260">
 </div>
-
-
 </details>
+
+Some features such as previous qualification (grade) and admission grade fit well, with r^2 = 0.98 for both. This isn't the case for many other features and they may benefit from transformations. Another ting to note is the abundance of zero-inflated features. We can create a binary indicator for each of these features which may assist our model.
+
+For the sake of time, a quic kscript was written to assess a range of transformations on our numeric features, but excluding both boolean features and features to be later encoded.
+
+**Note:** Some transformations require non-negative or strictly ppsitive input values. A filter was applied to ensure transformations were only used where approprate. While each row appears to contain a transformation value, some of these values are simply a result of no transformation being applied.
+
+The results were as follows:
+
+
+
 ## $${\color{#00A5A8}\text{2.2 Handling Categorical Data}}$$
+
+
+
 
 ## $${\color{#00A5A8}\text{2.3 Normalization and Standardization}}$$
 
