@@ -1,4 +1,4 @@
-<img width="435" alt="feature-importance-summary-table2" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/265631d8-f2c5-46bb-874c-77fd00f2ed83"># $${\color{#00D8DB}\text{Machine Learning For Early Detection of} \space \color{#00D8DB}\text{at Risk} \space \color{#00D8DB}\text{Students}}$$
+# $${\color{#00D8DB}\text{Machine Learning For Early Detection of} \space \color{#00D8DB}\text{at Risk} \space \color{#00D8DB}\text{Students}}$$
 
 
 The transition to higher education can be challenging for many students, and many factors can influence academic performance. As a result, some students may struggle to keep up with the demands of their coursework, leading to underperformance or dropping out. Below we will explore the usage of machine learning for early detection of students on the path to dropping out, allowing us to catch problems early and provide students with intervention strategies on a person-to-person basis.
@@ -51,7 +51,8 @@ The main goals are to:
 **3. Feature Importance and Selection**
   - 3.1 Impurity Based Feature Importance
   - 3.2 Permutation Based Feature Importance
-  - 3.3 Other Methods of Evaluation
+  - 3.3 Feature Importance Summary
+  - 3.4 Other Methods of Evaluation
 
 **4. Feature Engineering**
 
@@ -190,7 +191,7 @@ Age at enrollment shows older students as being much more likely to dropout, wit
 
 
 # $${\color{#00D8DB}\text{2. Feature Transformations}}$$
-
+Before we can begin the machine learning stage, our features need to undergo transformations. Feature transformations are a crucial preprocessing step, improving model performance by making patterns more visible and easier for the model to extract information. Below we'll cover a few variations of feature transformations relevant to our dataset.
 
 
 
@@ -307,6 +308,3 @@ Age at enrollment shows older students as being much more likely to dropout, wit
 ## $${\color{#00A5A8}\text{7.2 Changing our Metric}}$$
 
 ## $${\color{#00A5A8}\text{7.2 Additional Features}}$$
-
-
-
