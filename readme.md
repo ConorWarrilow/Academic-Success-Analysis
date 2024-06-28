@@ -1,10 +1,8 @@
-# $${\color{#00D8DB}\text{Machine Learning For Early Detection of} \space \color{#00D8DB}\text{at Risk} \space \color{#00D8DB}\text{Students}}$$
+<img width="435" alt="feature-importance-summary-table2" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/265631d8-f2c5-46bb-874c-77fd00f2ed83"># $${\color{#00D8DB}\text{Machine Learning For Early Detection of} \space \color{#00D8DB}\text{at Risk} \space \color{#00D8DB}\text{Students}}$$
 
 
 The transition to higher education can be challenging for many students, and many factors can influence academic performance. As a result, some students may struggle to keep up with the demands of their coursework, leading to underperformance or dropping out. Below we will explore the usage of machine learning for early detection of students on the path to dropping out, allowing us to catch problems early and provide students with intervention strategies on a person-to-person basis.
 
-
-[link](https://github.com/ConorWarrilow/Academic-Success-Analysis/main/readme.md#color00a5a8text52-choosing-the-right-model)
 
 
 # $${\color{#E0581C}\text{Results Summary}}$$
@@ -126,7 +124,7 @@ Next, we'll take a look at the (pearson) feature correlations:
 <details>
   <summary>$${\color{#72B3A2}\text{View Correlation Matrix}}$$</summary>
 <div align="center">
-	<img width = "600" src="">
+	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/a198ad4b-735e-40ea-92c9-6aff151d9cd2">
 </div>
 </details>
 
@@ -138,11 +136,12 @@ We can plot a dendogram to better visualize the correlations (again, pearson in 
 <details>
   <summary>$${\color{#72B3A2}\text{View Dendogram}}$$</summary>
 <div align="center">
-	<img width = "600" src="">
+	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/c67b713f-236e-43ef-b79a-88cb45df28c9">
 </div>
 </details>
 
 While the dendogram doesn't tell us anything new, its a useful way to visualize different 'batches' or 'groups' of features. For example we can see how the four features martial status, daytime/evening attendance, application mode, and age at enrollment have been grouped together, which isn't as visually obvious in the correlation Matrix.
+
 
 
 
@@ -151,9 +150,10 @@ Finally, we can plot a table containing any features with correlation values ove
 <details>
   <summary>$${\color{#72B3A2}\text{View High Correlations Table}}$$</summary>
 <div align="center">
-	<img width = "600" src="">
+	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/fac02335-f652-438b-b8b8-6627c16db881">
 </div>
 </details>
+
 
 
 
@@ -165,7 +165,7 @@ Next We'll look at the kde plots for our numeric features.
 <details>
   <summary>$${\color{#72B3A2}\text{View Kde Plots}}$$</summary>
 <div align="center">
-	<img width = "600" src="">
+	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/a894ab22-bb76-4252-8916-9ee1a7a926eb">
 </div>
 </details>
 
@@ -177,10 +177,11 @@ Age at enrollment shows older students as being much more likely to dropout, wit
 
 
 
+
 <details>
   <summary>$${\color{#72B3A2}\text{View Cumulative Kde Plots}}$$</summary>
 <div align="center">
-	<img width = "600" src="">
+	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/3cd02fdd-a770-4fad-a62e-9b3a061587ba">
 </div>
 </details>
 
@@ -218,9 +219,16 @@ Age at enrollment shows older students as being much more likely to dropout, wit
 <details>
   <summary>$${\color{#72B3A2}\text{View Impurity-Based Results}}$$</summary>
 <div align="center">
-	<img width = "600" src="">
+	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/38b8f5fe-a77b-4a3b-95f2-9826be62e38f">
+</div>
+
+ <div align="center">
+	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/d5d706cf-ab81-43e7-83bc-eff12f2163cd">
 </div>
 </details>
+
+
+
 
 
 ## $${\color{#00A5A8}\text{3.2 Permutation-Based Feature Importance}}$$
@@ -229,20 +237,26 @@ Age at enrollment shows older students as being much more likely to dropout, wit
 <details>
   <summary>$${\color{#72B3A2}\text{View Permutation-Based Results}}$$</summary>
 <div align="center">
-	<img width = "600" src="">
+	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/fe550290-0092-4e2e-8fac-15acb9a5f2bc">
 </div>
 </details>
-
-
 
 
 
 <details>
   <summary>$${\color{#72B3A2}\text{View Feature Importance Summary Table}}$$</summary>
 <div align="center">
-	<img width = "600" src="">
+	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/9acb8d6e-dd6f-47d7-aee9-8b997414a123">
 </div>
+
+<div align="center">
+	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/5db741a9-1c24-427b-8b44-ec842e95aee6">
+</div>
+
+
+ 
 </details>
+
 
 
 
