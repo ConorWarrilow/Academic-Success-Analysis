@@ -60,10 +60,9 @@ The main goals are to:
 
 **5. Putting it all together**
 - 5.1 Building a Pipeline
-- 5.2 Choosing the Right Model
-- 5.3 Hyperparameter Tuning
-- 5.4 Ensemble Models
-- 5.5 Ensemble Stacking
+- 5.2
+- 5.3 Ensemble Models
+- 5.4 Ensemble Stacking
 
  **6. Results**
 
@@ -425,10 +424,27 @@ Without a pipeline, things can get messy fast.
 Another benefit of pipelines is the ability to create custom transformations that can then be reused. For example 
 
 
+<details>
+  <summary>$${\color{#72B3A2}\text{View Custom Transformer}}$$</summary>
+<div align="center">
+	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/21a4e144-6ae9-4bea-81f0-eba4b99c4e0d">
+</div>
+</details>
 
-## $${\color{#00A5A8}\text{5.2 Choosing the Right Model}}$$
+While this is a basic example, the idea can be extended to more complex transformations.
 
-## $${\color{#00A5A8}\text{5.3 Hyperparameter Tuning}}$$
+
+
+
+## $${\color{#00A5A8}\text{5.2 Tuning Our model}}$$
+After testing baseline models on the data, tree based models proved to work best, with XGBoost being the top performer and LightGBM a close second.
+
+Next we need to tune our model hyperparameters, which can be done efficiently using a library called optuna.
+
+
+
+
+
 
 ## $${\color{#00A5A8}\text{5.4 Ensemble Models}}$$
 
