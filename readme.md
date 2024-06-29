@@ -371,8 +371,16 @@ SHAP (SHapley Additive exPlanations) is a game-theory approach to explain the ou
 
 
 
-# $${\color{#00D8DB}\text{4. Feature Engineering}}$$
-Feature engineering is a huge part of the machine learning process. While the terms feature transformations and feature engineering are often used interchangeably, the specific type of feature engineering covered here will be the creation of new features through various combinations of pre-existing features. Well-engineered features can help models capture underlying patterns in the data more effectively, essentially translating the information into a format more easily interpreted by our model.
+# $${\color{#00D8DB}\text{4. Feature Generation}}$$
+Before continuing, I want to define a few terms:
+
+1. Feature transformation
+2. feature generation
+3. feature engineering
+
+You'll often see the terms feature transformation and feature engineering used interchangeably. To the best of my understanding, feature engineering encompasses both feature transformation and feature generation, though I've witnessed people use the term transformation when referring to the generation of new features. Here, we'll use the term transformation to describe the changes made do individual features, and generation to describe the creation of new features. 
+
+Feature generation is a huge part of the machine learning process, and includes the creation of new features through various combinations of pre-existing features. Well-engineered features can help models capture underlying patterns in the data more effectively, essentially translating the information into a format more easily interpreted by our model.
 
 The problem here is there exist infinite set of possible features to engineer, with domain knowledge and experimentation being the main prerequisites for engineering useful features, and why you'll often hear feature engineering being referred to as an art.
 
