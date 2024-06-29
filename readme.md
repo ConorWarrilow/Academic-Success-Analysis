@@ -278,7 +278,16 @@ Moving on to feature importance analysis, which is quite often misunderstood and
 
 
 ## $${\color{#00A5A8}\text{3.1 Impurity-Based Feature Importance}}$$
+Impurity-based feature importance is an embedded method found in tree-based models. Features capable of producing the pureset splits, hence contributing to a cleaning partitioning of the data, will be considered as the features wit hthe highest importance.
 
+To obtain robust results, the following procedure was used:
+
+1. Four tree-based models were selected (XGBoost, LightGBM, Catboost, and random forest for good measure)
+2. Each model was trained using stratified cross validation and tested on the out of fold samples.
+3. The feature importances were extracted from each model
+4. The above steps were repeated for a total of ten iterations using different seeds and the results were averaged.
+
+**Impurity Results:**
 
 <details>
   <summary>$${\color{#72B3A2}\text{View Impurity-Based Results}}$$</summary>
@@ -291,12 +300,16 @@ Moving on to feature importance analysis, which is quite often misunderstood and
 </div>
 </details>
 
-
-
+### Problems with Impurity-Based Feature Importance
+The imporuty-based approach is performed on the training data, therefore if our tree-based model is overfitting and its performance of the test data is porr compared to the training data, the results for the analysis are not reliable. Another problem with the impurity-based approach is its bias towards favoring numerical feature, or features with more categories.
 
 
 ## $${\color{#00A5A8}\text{3.2 Permutation-Based Feature Importance}}$$
+Next we'll perform permutation-based feature importance. In this method, each feature is asynchronously shuffled and the drop in model performance is recorded. A significant drop in model performance indicates the feature to be important. If not drop in performance is recorded, we know the model's performance isn't reliant on the feature (although it doesnt necessarily imply we can drop the feature).
 
+The same procedure from the impurity-based analysis was conducted, with the measurement of interest being the drop (or lack thereof) in model performance. 
+
+**Permutation Results:**
 
 <details>
   <summary>$${\color{#72B3A2}\text{View Permutation-Based Results}}$$</summary>
