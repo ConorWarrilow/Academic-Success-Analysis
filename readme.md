@@ -4,6 +4,8 @@
 The transition to higher education can be challenging for many students, and many factors can influence academic performance. As a result, some students may struggle to keep up with the demands of their coursework, leading to underperformance or dropping out. Below we explore the usage of machine learning for early detection of students on the path to dropping out, with the goal of being able catch problems early and provide intervention strategies on a student-to-student basis.
 
 
+https://github.com/ashishpatel26/Amazing-Feature-Engineering/blob/master/A%20Short%20Guide%20for%20Feature%20Engineering%20and%20Feature%20Selection.md
+
 
 # $${\color{#E0581C}\text{Results Summary}}$$
 This dataset was part of a kaggle competition running through 1/6/2024 to 1/7/2024.
@@ -258,7 +260,7 @@ A few transformations are shown to provide marginal improvements. Further analys
 ## $${\color{#00A5A8}\text{2.2 Handling Categorical Data}}$$
 Most machine learning models don't play nicely with categorical data, with newer algorithms such as Catboost being the exception. While our data doesn't contain any categorical data types, it does contain categories represented as integers. Though not always the case, it's generally beneficial to encode such features. Numerous methods of encoding exist, and like most things in machine learning, experimentation is the only way to find the best representation.
 
-As an example, rather than representing mother's/father's qualification as arbitrarily ordered numbers, we could instead encode them ordinally, with smaller numbers for lower levels of qualification, and larger for higher. We could also consider binning the qualification levels, as a parent having a masters as opposed to a phd is quite unlikely to reduce our model's predictive ability, and may even help in preventing overfitting.
+As an example, rather than representing mother's/father's qualification as arbitrarily ordered numbers, we could instead encode them ordinally, with smaller numbers for lower levels of qualification, and larger for higher. We could also consider binning the qualification levels, as a parent having a masters as opposed to a phd is quite unlikely to affect our class prediction, and may actually help in preventing overfitting.
 
 On the other hand, a feature such as course is unlikely to have a specific order, and may benefit from simple one-hot-encoding.
 
