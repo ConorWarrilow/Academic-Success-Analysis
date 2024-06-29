@@ -60,9 +60,8 @@ The main goals are to:
 
 **5. Putting it all together**
 - 5.1 Building a Pipeline
-- 5.2
-- 5.3 Ensemble Models
-- 5.4 Ensemble Stacking
+- 5.2 Tuning Our Model
+- 5.3 Stacked Ensemble
 
  **6. Results**
 
@@ -452,14 +451,17 @@ An example study can be seen below.
 </details>
 
 The study will run for n iterations - 40 in the case of the above study - before returning the hyperparameters used for the best score. Unlike methods such as grid search and random search, optuna uses algorithms such as [Tree-structured Parzen Estimator](https://towardsdatascience.com/building-a-tree-structured-parzen-estimator-from-scratch-kind-of-20ed31770478) (TPE) to navigate the hyperparameter search space more effectively, saving time and often leading to improved results.
+<br/>
+
+## $${\color{#00A5A8}\text{5.3 Stacked Ensemble Model}}$$
+The tuned XGBoost model was able to score around 82% which isn't bad, however additional strategies can be used to increase model performance. One such strategy is the use of a stacked ensemble, often simply referred to as 'stacking'. Stacking involves combining multiple base models (learners) with a meta-model to achieve better predictive performance than any single base model alone.
+
+For the ensemble, multiple machine learning models are trained independently on the same dataset. These base models can vary, such as combining SCV models with tree based models, or they can simply be different instances of the same model with varying hyperparameters.
 
 
-## $${\color{#00A5A8}\text{5.4 Ensemble Models}}$$
-While our XGboost model performs quite well, additional strategies can be used to increase model performance. One such strategy is the use of ensemble models, 
+Next, A meta-model is trained and tuned on the predictions (meta-features) made by the base models. This meta-model learns to combine the predictions from the base models effectively, often resulting in an improvement in final score. Here our meta-model will simply be another instance of XGBoost.
 
-
-
-## $${\color{#00A5A8}\text{5.4 Stacked Ensembles}}$$
+For the base learners, several instances of XGBoost, LightGBM, and Catboost were tuned using optuna.
 
 
 # $${\color{#00D8DB}\text{6. Results}}$$
