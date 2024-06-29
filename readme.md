@@ -272,7 +272,7 @@ lastly, we'll apply normalization and standardization, generally referred to as 
 
 
 # $${\color{#00D8DB}\text{3. Feature Importance Analysis}}$$
-Moving on to feature importance analysis, which is quite often misunderstood and misused. There are numerous methods of measuring feature importance resulting in slight variations in definition, but in general, feature importance simply aims to measure the extent to which a feature contributes towards a model's predictive ability. Obtaining feature importances can help us to understand if we have biases in our data or bugs in our models. Feature importance is also used to understand the underlying relationships between features and our target, helping to make business decisions. It can also give an idea as to what features we may need to focus on during feature engineering.
+Moving on to feature importance analysis, which is quite often misunderstood and misused. There are numerous methods of measuring feature importance resulting in slight variations in definition, but in general, feature importance simply aims to measure the extent to which a feature contributes towards a model's predictive ability. Obtaining feature importances can help us to detect biases within the data, as well as problems within our model. Feature importance is also used to understand the underlying relationships between features and our target, helping us to properly understand how the model works, and allowing us to use our results to make business decisions. It can also give an idea as to what features we may need to focus on during feature engineering.
 
 
 
@@ -321,6 +321,15 @@ The same procedure from the impurity-based analysis was conducted, with the meas
 	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/5db741a9-1c24-427b-8b44-ec842e95aee6">
 </div>
 </details>
+
+
+### Problems with Permutation-Based Feature Importance
+Despite being a popular method of evaluating feature importance, permutation importance is a problematic evaluation method. The following article does an excellent job about why we should be careful when using permutation importance, or to simply [stop permuting features](https://towardsdatascience.com/stop-permuting-features-c1412e31b63f) altogether.
+
+To summarise, permutation based importance is:
+- Biased toward colinear features, as well as features that have many categories. further suggest that bootstrapping exaggerates these effects
+- Exaggerated by OOB measures where they overestimate the importance of colinear features
+- Affected by true features being correlated with noise features
 
 
 
