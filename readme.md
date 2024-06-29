@@ -1,7 +1,7 @@
 # $${\color{#00D8DB}\text{Machine Learning For Early Detection of} \space \color{#00D8DB}\text{at Risk} \space \color{#00D8DB}\text{Students}}$$
 
 
-The transition to higher education can be challenging for many students, and many factors can influence academic performance. As a result, some students may struggle to keep up with the demands of their coursework, leading to underperformance or dropping out. Below we will explore the usage of machine learning for early detection of students on the path to dropping out, allowing us to catch problems early and provide students with intervention strategies on a person-to-person basis.
+The transition to higher education can be challenging for many students, and many factors can influence academic performance. As a result, some students may struggle to keep up with the demands of their coursework, leading to underperformance or dropping out. Below we explore the usage of machine learning for early detection of students on the path to dropping out, with the goal of being able catch problems early and provide intervention strategies on a student-to-student basis.
 
 
 
@@ -14,7 +14,7 @@ This dataset was part of a kaggle competition running through 1/6/2024 to 1/7/20
 Kaggle is a global online platform designed for data scientists and machine learning practitioners, where individuals or teams compete to solve complex data problems. Kaggle competitions involve leaderboards, with large prices (often over $10,000) rewarded to the top participants/teams.
 </details>
 
-My final model obtained an accuracy score of 83.82%, just 0.31% shy of the leaderboard highscore, putting me in the top 8% of the leaderboard out of over 2500 participants. My main focus however was on EDA and optimizing the recall score for the dropout class, which can be seen below. By altering class weights, recall scores of up to 90% are realistically possible with a small sacrifice to precison. 
+My final model obtained an accuracy score of 83.82%, just 0.31% shy of the leaderboard highscore, putting me in the top 8% of the leaderboard out of over 2500 participants. My main focus however was on EDA and optimizing the recall score for the dropout class, which can be seen in the writeup. By altering class weights, recall scores of up to 90% are realistically possible with a small sacrifice to precison. 
 
 To conclude, the above results indicate the potential for machine learning to be a highly effective strategy for the early detection of students at risk of dropping out.
 
@@ -58,7 +58,7 @@ The main goals are to:
 
 **4. Feature Engineering**
 
-**5. Machine Learning**
+**5. Putting it all together**
 - 5.1 Building a Pipeline
 - 5.2 Choosing the Right Model
 - 5.3 Hyperparameter Tuning
@@ -378,30 +378,51 @@ Before continuing, I want to define a few terms:
 2. feature generation
 3. feature engineering
 
-You'll often see the terms feature transformation and feature engineering used interchangeably. To the best of my understanding, feature engineering encompasses both feature transformation and feature generation, though I've witnessed people use the term transformation when referring to the generation of new features. Here, we'll use the term transformation to describe the changes made do individual features, and generation to describe the creation of new features. 
+You'll often see the terms feature transformation and feature engineering used interchangeably. To the best of my understanding, feature engineering encompasses both feature transformation and feature generation, though I've witnessed people use the term transformation when referring to the generation of new features. Here, we'll use the term transformation to describe the changes made do individual features, generation to describe the creation of new features, while engineering can refer to either.
 
-Feature generation is a huge part of the machine learning process, and includes the creation of new features through various combinations of pre-existing features. Well-engineered features can help models capture underlying patterns in the data more effectively, essentially translating the information into a format more easily interpreted by our model.
+Feature generation is a huge part of the machine learning process, and includes the creation of new features through various combinations of pre-existing features. Well-engineered features help models capture underlying patterns in the data more effectively, essentially translating the information into a format more easily interpreted by the model.
 
-The problem here is there exist infinite set of possible features to engineer, with domain knowledge and experimentation being the main prerequisites for engineering useful features, and why you'll often hear feature engineering being referred to as an art.
+The problem here is there exist an infinite set of possible features to engineer, and so domain knowledge becomes the main prerequisites in efficiently engineering useful features. This is why you'll often hear feature engineering being referred to as an 'art'.
 
-The topic is incredibly vast, so instead of reinventing the wheel and explaining it myself, you can find a well written repository on feature engineering [here](https://github.com/ashishpatel26/Amazing-Feature-Engineering)
+The topic is incredibly vast, so instead of reinventing the wheel, you can find a well written repository on feature engineering [here](https://github.com/ashishpatel26/Amazing-Feature-Engineering)
 
 
 # $${\color{#00D8DB}\text{5. Machine Learning}}$$
+The start to end process of machine learning is far from linear, in fact, its quite the opposite, and looks more like this:
 
+<details>
+  <summary>$${\color{#72B3A2}\text{View Workflow Diagram}}$$</summary>
+<div align="center">
+	<img width = "800" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/36e0e9d9-658e-47b0-b43b-80d0bf5cc513">
+</div>
+</details>
 
-
-
-
-
+By now, we would've already already circulated the process a couple of times before investing time into our final design. Below is an example of how our workflow may look like after a few of these cycles.
 
 
 
 ## $${\color{#00A5A8}\text{5.1 Building a Pipeline}}$$
+To have an efficient workflow, it helps to build a strong pipeline. 
 
+To summarize, a pipeline is a streamlined and structured way to automate the end-to-end process of applying machine learning models. We can include all of our preprocessing, feature selection, feature engineering, and other processing steps into a single chained event. We can even include the model itself if required.
 
+Pipelinews ensure that each step is properly executed in sequence, and that the same transformations are applied to both training and test data without data leakage.
+They also allow us to easily modify our process should we wish to make a change, or test alternative preprocessing options.
 
+Pipelines can feel complicated at first, however they're essential to learn once the processing procedure becomes more complicated.
 
+Below is a straightforward example of how the column transformation stage might look in our pipeline:
+
+<details>
+  <summary>$${\color{#72B3A2}\text{View Column Transformation Step}}$$</summary>
+<div align="center">
+	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/9b6d6fb2-290c-469c-9198-1edfff71c908">
+</div>
+</details>
+
+Without a pipeline, things can get messy fast. 
+
+Another benefit of pipelines is the ability to create custom transformations that can then be reused. For example 
 
 
 
