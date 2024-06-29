@@ -272,7 +272,7 @@ lastly, we'll apply normalization and standardization, generally referred to as 
 
 
 # $${\color{#00D8DB}\text{3. Feature Importance Analysis}}$$
-Moving on to feature importance analysis, which is quite often misunderstood and misused. There are various methods of measuring feature importance and hence slightly definitions based on the method used, but in general, Feature importance simply aims to measure the extent to which a feature contributes towards a model's predictive ability. Obtaining feature importances can help us to understand if we have biases in our data or bugs in models. Also, importance is frequently using for understanding the underlying process and making business decisions. Indeed, the model’s top features may  for further feature engineering and provide insights on what is going on.
+Moving on to feature importance analysis, which is quite often misunderstood and misused. There are numerous methods of measuring feature importance resulting in slight variations in definition, but in general, feature importance simply aims to measure the extent to which a feature contributes towards a model's predictive ability. Obtaining feature importances can help us to understand if we have biases in our data or bugs in our models. Feature importance is also used to understand the underlying relationships between features and our target, helping to make business decisions. It can also give an idea as to what features we may need to focus on during feature engineering.
 
 
 
