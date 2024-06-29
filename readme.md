@@ -324,7 +324,7 @@ The same procedure from the impurity-based analysis was conducted, with the meas
 
 
 ### Problems with Permutation-Based Feature Importance
-Despite being a popular method of evaluating feature importance, permutation importance is a problematic evaluation method. The following article does an excellent job about why we should be careful when using permutation importance, or to simply [stop permuting features](https://towardsdatascience.com/stop-permuting-features-c1412e31b63f) altogether.
+Despite being a popular method of evaluating feature importance, permutation importance is a problematic evaluation method. The following article does an excellent job explaining why we should be careful when using permutation importance, or to simply [stop permuting features](https://towardsdatascience.com/stop-permuting-features-c1412e31b63f) altogether.
 
 To summarise, permutation based importance is:
 - Biased toward colinear features, as well as features that have many categories. further suggest that bootstrapping exaggerates these effects
@@ -336,6 +336,8 @@ To summarise, permutation based importance is:
 
 ## $${\color{#00A5A8}\text{3.3 Feature Importance Summary}}$$
 
+Finally, we'll merge our results together from the two methods of evaluation.
+
 <details>
   <summary>$${\color{#72B3A2}\text{View Feature Importance Summary Table}}$$</summary>
 <div align="center">
@@ -343,11 +345,20 @@ To summarise, permutation based importance is:
 </div>
 </details>
 
-
+For the most part, the permutation and impurity based methods seem to be in agreement. This is a good starting point in understanding what features a model is currently most reliant on, and provides an idea about what we might need to do next regarding, feature selection, as well as feature engineering.
 
 ## $${\color{#00A5A8}\text{3.4 Alternative Methods of Feature Importance}}$$
+The above examples give us a rough idea about our feature importances, but other methods of evaluation would be beneficial to include. Below are a few examples of such methods we could add:
+
+### Sequential Feature Selection
+SFS is a family of greedy search algorithms that select features sequentially. The process starts with an empty set and adds (or removes) one feature at a time based on the model’s performance, until the desired number of features is reached or performance stops improving. While powerful, it becomes computationally expensive the more features we have. 
+
+### Boruta
+Boruta is an all-relevant feature selection method, meaning it aims to retain all features contributing to the model's performance, no matter how small. It works as a wrapper algorithm around tree based models to find the most relevant features. The idea is to create shadow features by randomly permuting the values of each feature, then training the model on both original and shadow features. Features that consistently outperform the shadow features are considered important, while other features are discarded based on a set threshold.
 
 
+### SHAP
+SHAP (SHapley Additive exPlanations) is a game-theory approach to explain the output of machine learning models. SHAP values provide a measure of the impact of each feature on the prediction. It works by computing the contribution of each feature to the prediction across all possible subsets of features. Similar to Sequential Feature Selection, calculating exact shap values can be extremely computationally expensive, with a total of 2^n feature subsets for n features.
 
 
 
