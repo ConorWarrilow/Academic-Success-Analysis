@@ -441,12 +441,23 @@ After testing baseline models on the data, tree based models proved to work best
 
 Next we need to tune our model hyperparameters, which can be done efficiently using a library called optuna.
 
+Optuna works by creating what's called a 'study', where the goal is to maximize (or minimize depending on the metric) the output of the study for the given hyperparameters. 
 
+An example study can be seen below.
+<details>
+  <summary>$${\color{#72B3A2}\text{View Optuna Study}}$$</summary>
+<div align="center">
+	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/6295951e-9c17-41a4-82e3-1e11ffdc47dd">
+</div>
+</details>
 
-
+The study will run for n iterations - 40 in the case of the above study - before returning the hyperparameters used for the best score. Unlike methods such as grid search and random search, optuna uses algorithms such as [Tree-structured Parzen Estimator](https://towardsdatascience.com/building-a-tree-structured-parzen-estimator-from-scratch-kind-of-20ed31770478) (TPE) to navigate the hyperparameter search space more effectively, saving time and often leading to improved results.
 
 
 ## $${\color{#00A5A8}\text{5.4 Ensemble Models}}$$
+While our XGboost model performs quite well, additional strategies can be used to increase model performance. One such strategy is the use of ensemble models, 
+
+
 
 ## $${\color{#00A5A8}\text{5.4 Stacked Ensembles}}$$
 
