@@ -345,16 +345,16 @@ Finally, we'll merge our results together from the two methods of evaluation.
 </div>
 </details>
 
-For the most part, the permutation and impurity based methods seem to be in agreement. This is a good starting point in understanding what features a model is currently most reliant on, and provides an idea about what we might need to do next regarding, feature selection, as well as feature engineering.
+For the most part, the permutation and impurity based methods seem to be in agreement. This is a good starting point in understanding what features a model is currently most reliant on, and provides an idea about what we might need to do next regarding feature selection and feature engineering.
 
 ## $${\color{#00A5A8}\text{3.4 Alternative Methods of Feature Importance}}$$
 The above examples give us a rough idea about our feature importances, but other methods of evaluation would be beneficial to include. Below are a few examples of such methods we could add:
 
 ### Sequential Feature Selection
-SFS is a family of greedy search algorithms that select features sequentially. The process starts with an empty set and adds (or removes) one feature at a time based on the model’s performance, until the desired number of features is reached or performance stops improving. While powerful, it becomes computationally expensive the more features we have. 
+SFS is a family of greedy search algorithms that select features sequentially. The process starts with an empty set and adds (or removes) one feature at a time based on the model’s performance, until we reach the desired number of features, or until performance stops improving. While powerful, it becomes computationally expensive the more features we have, particuarly for backwards SFS where we begin with the entire set of features.
 
 ### Boruta
-Boruta is an all-relevant feature selection method, meaning it aims to retain all features contributing to the model's performance, no matter how small. It works as a wrapper algorithm around tree based models to find the most relevant features. The idea is to create shadow features by randomly permuting the values of each feature, then training the model on both original and shadow features. Features that consistently outperform the shadow features are considered important, while other features are discarded based on a set threshold.
+Boruta is an all-relevant feature selection method, meaning it aims to retain all features contributing to the model's performance, no matter how small. It works as a wrapper algorithm around tree based models to find the most relevant features. The idea is to create shadow features by randomly permuting the values of each feature simultaneously, and then training the model on both the original and shadow features. Features that consistently outperform the shadow features are considered important, while other features are discarded based on a set threshold.
 
 
 ### SHAP
@@ -372,7 +372,11 @@ SHAP (SHapley Additive exPlanations) is a game-theory approach to explain the ou
 
 
 # $${\color{#00D8DB}\text{4. Feature Engineering}}$$
+Feature engineering is a huge part of the machine learning process. While the terms feature transformations and feature engineering are often used interchangeably, the specific type of feature engineering covered here will be the creation of new features through various combinations of pre-existing features. Well-engineered features can help models capture underlying patterns in the data more effectively, essentially translating the information into a format more easily interpreted by our model.
 
+The problem here is there exist infinite set of possible features to engineer, with domain knowledge and experimentation being the main prerequisites for engineering useful features, and why you'll often hear feature engineering being referred to as an art.
+
+The topic is incredibly vast, so instead of reinventing the wheel and explaining it myself, you can find a well written repository on feature engineering [here](https://github.com/ashishpatel26/Amazing-Feature-Engineering)
 
 
 # $${\color{#00D8DB}\text{5. Machine Learning}}$$
