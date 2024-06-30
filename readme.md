@@ -654,7 +654,7 @@ This probably sound confusing, so We'll take a look at some examples to understa
 
 
 <details>
-  <summary>$${\color{#72B3A2}\text{View ROC AUC/Accuracy Scores}}$$</summary>
+  <summary>$${\color{#72B3A2}\text{View t-SNE Plots (Perplexity)}}$$</summary>
 
 **Perplexity 10:**
 
@@ -681,6 +681,32 @@ This probably sound confusing, so We'll take a look at some examples to understa
 </details>
 
 
+Pretty neat huh? Changing the perplexity completely alters the clustering of points, with higher values of perplexity resulting in much stronger clustering. Next we'll see what happens if we only include the top 10 features from our previous feature importance analysis.
+
+
+
+<details>
+  <summary>$${\color{#72B3A2}\text{View t-SNE Plots (Features)}}$$</summary>
+
+**All Features:**
+
+<div align="center">
+	<img width = "800" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/66fcda9b-ae07-4fb6-8997-c6a8db0d8072">
+</div>
+
+<br/>
+ 
+**Top 10 Features:**
+
+<div align="center">
+	<img width = "800" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/05b43de0-d38d-441a-9c09-e3721c56ac83">
+ </div>
+
+</details>
+
+They might as well be entirely different data sets at this point. 
+
+With so much variation in the plots, we need to be careful about not only how they're generated, but how they're intrepreted. A wide range of perplexity values should be tested before performing any analysis, and each feature included should be relevant to the purpose of the analysis.
 
 
 
@@ -689,9 +715,10 @@ This probably sound confusing, so We'll take a look at some examples to understa
 
 
 
-![t-SNE-10-features-perp30](https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/05b43de0-d38d-441a-9c09-e3721c56ac83)
 
-![t-SNE-10-features-perp30-selected-area](https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/a69d8786-a12a-4ba8-9efe-8e03ee113c2b)
+
+
+
 
 
 
