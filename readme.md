@@ -649,7 +649,7 @@ As a bit of added fun, we'll explore a method of dimensionality reduction known 
 
 When using t-SNE, there are a few things we need to be careful about. Firstly, while it preserves the local structures (neighborhood relationships) within the data, it distorts the global structure. This means two clusters that appear closer together than a third cluster arent necessarily more similar to eachother than they are to the third cluster. Second, t-SNE takes all features into account with equal influence. Depending on the goal, it could be wise to drop any features we're not interested in. Lastly, t-SNE involves a parameter called 'perplexity', which is a somewhat 'balance' between the plot's local and global aspects. We can also look at it as a guess about the number of close neighbors each point has. 
 
-This probably sound confusing, so We'll take a look at some examples to understand it better, where we'll alter both the perplexity value, as well as the features we include.
+This probably sound confusing, so we'll take a look at some examples to understand it better where we'll alter the perplexity value as well as the features we include.
 
 
 
