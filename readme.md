@@ -616,6 +616,7 @@ We can look at other metrics too, such as our ROC AUC, Weighted F1, and accuracy
 </div>
 </details>
 
+![weighted-f1-accuracy-plot](https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/037f55aa-3a4e-4934-bb9b-cc5486d2fd14)
 
 
 
