@@ -1,7 +1,7 @@
 # $${\color{#00D8DB}\text{Machine Learning for the Early Detection of} \space \color{#00D8DB}\text{at Risk} \space \color{#00D8DB}\text{Students}}$$
 
 
-The transition to higher education can be challenging for many students, and many factors can influence academic performance. As a result, some students may struggle to keep up with the demands of their coursework, leading to underperformance or dropping out. Below we explore the usage of machine learning for the early detection of students on the path to dropping out, with the goal of being able catch problems early and provide intervention strategies on a student-to-student basis.
+The transition to higher education can be challenging for many students and many factors can influence academic performance. As a result, some students may struggle to keep up with the demands of their coursework leading to underperformance or dropping out. Below we explore the usage of machine learning for the early detection of students on the path to dropping out, with the goal of being able catch problems early and provide intervention strategies on a student-to-student basis.
 
 
 
