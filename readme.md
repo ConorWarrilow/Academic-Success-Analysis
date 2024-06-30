@@ -1,4 +1,4 @@
-# $${\color{#00D8DB}\text{Machine Learning For Early Detection of} \space \color{#00D8DB}\text{at Risk} \space \color{#00D8DB}\text{Students}}$$
+# $${\color{#00D8DB}\text{Machine Learning for the Early Detection of} \space \color{#00D8DB}\text{at Risk} \space \color{#00D8DB}\text{Students}}$$
 
 
 The transition to higher education can be challenging for many students, and many factors can influence academic performance. As a result, some students may struggle to keep up with the demands of their coursework, leading to underperformance or dropping out. Below we explore the usage of machine learning for early detection of students on the path to dropping out, with the goal of being able catch problems early and provide intervention strategies on a student-to-student basis.
@@ -15,7 +15,7 @@ This dataset was part of a kaggle competition running through 1/6/2024 to 1/7/20
 Kaggle is a global online platform designed for data scientists and machine learning practitioners, where individuals or teams compete to solve complex data problems. Kaggle competitions involve leaderboards, with large prices (often over $10,000) rewarded to the top participants/teams.
 </details>
 
-My final model obtained an accuracy score of 83.82%, just 0.31% shy of the leaderboard highscore, putting me in the top 8% of the leaderboard out of over 2500 participants. My main focus however was on EDA and optimizing the recall score for the dropout class, which can be seen in the writeup. By altering class weights, recall scores of up to 90% are realistically possible with a small sacrifice to precison. 
+My final model obtained an accuracy score of 83.82%, just 0.31% shy of the leaderboard highscore, putting me in the top 8% of the leaderboard out of over 2500 participants. My main focus however was on EDA and optimizing the recall score for the dropout class, which can be seen towards the end of the writeup. By altering class weights, recall scores of up to 90% are realistically possible with a sacrifice precison. 
 
 To conclude, the above results indicate the potential for machine learning to be a highly effective strategy for the early detection of students at risk of dropping out.
 
@@ -35,7 +35,6 @@ The main goals are to:
 
 
 # $${\color{#00D8DB}\text{Table of Contents}}$$
-
 
 
 **1. EDA**
@@ -404,10 +403,10 @@ By now, we would've already already circulated the process a couple of times bef
 ## $${\color{#00A5A8}\text{5.1 Building a Pipeline}}$$
 To have an efficient workflow, it helps to build a strong pipeline. 
 
-To summarize, a pipeline is a streamlined and structured way to automate the end-to-end process of applying machine learning models. We can include all of our preprocessing, feature selection, feature engineering, and other processing steps into a single chained event. We can even include the model itself if required.
+To summarize, a pipeline is a streamlined and structured way to automate the end-to-end process of applying machine learning models. We can include all of our feature selection, feature engineering, and other processing steps into a single chained event. We can even include the model itself if desired.
 
-Pipelinews ensure that each step is properly executed in sequence, and that the same transformations are applied to both training and test data without data leakage.
-They also allow us to easily modify our process should we wish to make a change, or test alternative preprocessing options.
+Pipelinews ensure that each step is properly executed in the correct sequence, and that transformations are applied to the training and test data without data leakage.
+They also allow us to easily modify our process should we wish to make a change, or experiment with various preprocessing options.
 
 Pipelines can feel complicated at first, however they're essential to learn once the processing procedure becomes more complicated.
 
@@ -420,9 +419,9 @@ Below is a straightforward example of how the column transformation stage might 
 </div>
 </details>
 
-Without a pipeline, things can get messy fast. 
+Without the pipeline, things could get messy fast. 
 
-Another benefit of pipelines is the ability to create custom transformations that can then be reused. For example 
+Another benefit of pipelines is the ability to create custom transformations that can be reused. For example 
 
 
 <details>
@@ -456,9 +455,9 @@ The study will run for n iterations - 40 in the case of the above study - before
 <br/>
 
 ## $${\color{#00A5A8}\text{5.3 Stacked Ensemble Model}}$$
-The tuned XGBoost model was able to score around 82% which isn't bad, however additional strategies can be used to increase model performance. One such strategy is the use of a stacked ensemble, often simply referred to as 'stacking'. Stacking involves combining multiple base models (learners) with a meta-model to achieve better predictive performance than any single base model alone.
+The tuned XGBoost model was able to score around 82%, which isn't bad, however additional strategies can be used to increase model performance. One such strategy is the use of a stacked ensemble, often simply referred to as 'stacking'. Stacking involves combining multiple base models (learners) with a meta-model to achieve better predictive performance than any single base model alone.
 
-For the ensemble, multiple machine learning models are trained independently on the same dataset. These base models can vary, such as combining SCV models with tree based models, or they can simply be different instances of the same model with varying hyperparameters.
+For the ensemble, multiple models are trained independently on the same dataset. These base models can vary, such as combining SVC models with tree based models, or they can simply be different instances of the same model with varying hyperparameters.
 
 
 Next, A meta-model is trained and tuned on the predictions (meta-features) made by the base models. This meta-model learns to combine the predictions from the base models effectively, often resulting in an improvement in final score. Here our meta-model will simply be another instance of XGBoost.
@@ -467,11 +466,11 @@ For the base learners, several instances of XGBoost, LightGBM, and Catboost were
 
 
 # $${\color{#00D8DB}\text{6. Results}}$$
-The final result of the stacked ensemble was an accuracy score of 83.82%, just 0.31% below the kaggle leaderboard highscore, which is an increase of roughly 1.8% in comparison to our single XGBoost model. 
+The final result of the stacked ensemble was an accuracy score of 83.82%, just 0.31% below the kaggle leaderboard highscore, which is an increase of roughly 1.8% when compared to our single XGBoost model. 
 
 
 # $${\color{#00D8DB}\text{7. Further Analysis}}$$
-While our leaderboard score score is quite nice, the goal here wasn't to score high on the leaderboard, rather, our goal is aimed at the early detection of students at risk of dropping out. When using accuracy score, we're simply aiming to maximize our classification accuracy over the 3 classes, with all classes being weighted with equal importance. Instead of using accuracy, we need to alter our model and metric to put more emphasis on being able to detect the dropout class, which is where class weights and alternative metrics come in to play.
+While our leaderboard score score is quite nice, the goal here wasn't to score high on the leaderboard, rather, our goal is aimed at the early detection of students at risk of dropping out. When using accuracy score, we're simply aiming to maximize our classification accuracy over the 3 classes, with all classes weighted with equal importance. Instead of using accuracy, we need to alter our model and metric to put more emphasis on detecting the dropout class, which is where class weights and alternative metrics come in to play.
 
 ## $${\color{#00A5A8}\text{7.1 Changing our Metric}}$$
 For classification problems, other metrics such as f1 score - whether it be the standard, weighted, micro or macro variant - are commonly used, as well as ROC AUC.
@@ -594,16 +593,28 @@ The AUC values shown are summary statistics that reflect the model's ability to 
 
 
 
-
-
-
-
 ## $${\color{#00A5A8}\text{7.2 Changing our Class Weights}}$$
-Before we try out our new metrics, we need a way to make sure our model is more focused on obtaining a high recall for class 0, and less focused on getting a high accuracy over all classes. One way to do this is to adjust the class weights. We'll iterate over several different class weight values and analyze our results.
+Before we try out our new metrics, we need a way to ensure our model puts more focus towards obtaining a high recall for class 0, and less towards obtaining a high accuracy over all classes. While we could deep dive into the use of custom cost functions, we'll keep it simple for now. Instead, we'll adjust the 'class weights' parameter in our model, essentially telling it that some classes are more "important" than others, with a harsher penalty applied to incorrect predictions for these classes. Lets iterate over several different class weight values and analyze the affects to our precision and recall scores.
 
+<details>
+  <summary>$${\color{#72B3A2}\text{View Precision/Recall Scores}}$$</summary>
 
+<div align="center">
+	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/c65c3886-0b8b-4b1f-9519-10b3ecaec734">
+</div>
+</details>
 
+There's a lot to take in from the one plot, so lets begin with the main class of interest, class 0. As we'd expect, increasing the class weight increases class 0's recall, while also reducing its precision. This is due to a large proportion of class 2 ('enrolled' class) being incorrectly classified as class 0, which is apparent from the steep decrease in its recall as class 0's weight value increases. Class 1 is affected in the same way, although not nearly to the same extent.
 
+We can look at other metrics too, such as our ROC AUC, Weighted F1, and accuracy scores.
+
+<details>
+  <summary>$${\color{#72B3A2}\text{View Precision/Recall Scores}}$$</summary>
+
+<div align="center">
+	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/c65c3886-0b8b-4b1f-9519-10b3ecaec734">
+</div>
+</details>
 
 
 
