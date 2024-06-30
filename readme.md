@@ -1,7 +1,7 @@
 # $${\color{#00D8DB}\text{Machine Learning for the Early Detection of} \space \color{#00D8DB}\text{at Risk} \space \color{#00D8DB}\text{Students}}$$
 
 
-The transition to higher education can be challenging for many students, and many factors can influence academic performance. As a result, some students may struggle to keep up with the demands of their coursework, leading to underperformance or dropping out. Below we explore the usage of machine learning for early detection of students on the path to dropping out, with the goal of being able catch problems early and provide intervention strategies on a student-to-student basis.
+The transition to higher education can be challenging for many students, and many factors can influence academic performance. As a result, some students may struggle to keep up with the demands of their coursework, leading to underperformance or dropping out. Below we explore the usage of machine learning for the early detection of students on the path to dropping out, with the goal of being able catch problems early and provide intervention strategies on a student-to-student basis.
 
 
 
@@ -15,9 +15,9 @@ This dataset was part of a kaggle competition running through 1/6/2024 to 1/7/20
 Kaggle is a global online platform designed for data scientists and machine learning practitioners, where individuals or teams compete to solve complex data problems. Kaggle competitions involve leaderboards, with large prices (often over $10,000) rewarded to the top participants/teams.
 </details>
 
-My final model obtained an accuracy score of 83.82%, just 0.31% shy of the leaderboard highscore, putting me in the top 8% of the leaderboard out of over 2500 participants. My main focus however was on EDA and optimizing the recall score for the dropout class, which can be seen towards the end of the writeup. By altering class weights, recall scores of up to 90% are realistically possible with a sacrifice precison. 
+My final model obtained an accuracy score of 83.82%, just 0.31% shy of the leaderboard highscore, putting me in the top 8% of the leaderboard out of over 2500 participants. My main focus however was on EDA and optimizing the recall score for the dropout class, which can be seen towards the end of the writeup. By altering class weights, recall scores of up to 90% are realistically possible with a reasonable sacrifice to precison. 
 
-To conclude, the above results indicate the potential for machine learning to be a highly effective strategy for the early detection of students at risk of dropping out.
+To summarize, the above results indicate the potential for machine learning to be a highly effective strategy for the early detection of students at risk of dropping out.
 
 
 
@@ -39,7 +39,7 @@ The main goals are to:
 
 **1. EDA**
 
-- 1.1 The Basics
+- 1.1 Initial EDA
 - 1.2 Correlations
 - 1.3 Kde and Cumulative Kde Plots + Analysis
 - 1.4 Binary Feature Analysis
@@ -56,7 +56,7 @@ The main goals are to:
   - 3.3 Feature Importance Summary
   - 3.4 Other Methods of Evaluation
 
-**4. Feature Engineering**
+**4. Feature Generation**
 
 **5. Putting it all together**
 - 5.1 Building a Pipeline
@@ -93,9 +93,9 @@ The situation is a multiclass classification, with 3 classes to predict.
 
 # $${\color{#00D8DB}\text{1. Exploratory Data Analysis}}$$
 
-## $${\color{#00A5A8}\text{}}$$
+## $${\color{#00A5A8}\text{1.1 Initial EDA}}$$
 
-### Initial EDA
+### The Basics
 - No missing/null values
 - 8 binary/boolean columns
 - 7 float columns
@@ -106,7 +106,7 @@ The situation is a multiclass classification, with 3 classes to predict.
 Several Integer columns appear appropriate for one-hot-encoding.
 
 ### Target Class Imbalance
-The target classes are imbalanced, as can be seen in the below plot.
+The target classes are imbalanced, as can be seen in the plot below.
 
 <details>
   <summary>$${\color{#72B3A2}\text{View Class Imbalance}}$$</summary>
@@ -132,7 +132,7 @@ Next, we'll take a look at the (pearson) feature correlations:
 </div>
 </details>
 
-A few features are highly correlated, particuarly those involving curricular units. As we'll likelyt be using tree based models, this isn't necessarily a problem when it comes to model accuracy, however we still need to be mindful about these features when assessing feature importance. It would be wise to either drop certain features, aggregate highly correlated features, or to simply take these correlated features into account.
+A few features are highly correlated, particuarly those involving curricular units. As we'll likely be using tree based models, this isn't too problematic when it comes to model accuracy, however we'll need to be mindful when assessing feature importance. It would be wise to either drop certain features, aggregate highly correlated features, or to simply take these correlated features into account.
 
 
 ### Dendogram
@@ -173,11 +173,11 @@ Next We'll look at the kde plots for our numeric features.
 </div>
 </details>
 
-Looking at the kde plots, two features stand out the most: Curricular units 1st sem (approved), and curricular units 2nd sem (approved). These features show distinct distributions across the target classes with very little overlap amongst the dropout and graduate classes. Looking at the dropout class, the majority of values are zero in both features. In contrast, most values range between 5 and 7 for the graduate class, while the enrolled class spans a somewhat gaussian distribution between the other classes, with its meaning falling much closer to the graduate class.
+Looking at the kde plots, two features stand out the most: Curricular units 1st sem (approved) and curricular units 2nd sem (approved). These features show distinct distributions across the target classes with very little overlap amongst the dropout and graduate classes. The majority of values within the dropout class are zero in both features, while most values range between 5 and 7 for the graduate class. The enrolled class appears to span a somewhat gaussian distribution between the two other classes, with its meaning falling much closer to the graduate class.
 
-Curricular units 1st/2nd sem (grade) features also sow string separation between class distributions, particuarly between the dropout and graudate/enrolled classes.
+Curricular units 1st/2nd sem (grade) features also show strong separation between class distributions, particuarly between the dropout and graudate/enrolled classes.
 
-Age at enrollment shows older students as being much more likely to dropout, with the dropout class showing a much more prominant right skew compared to the other classes.
+Lastly, age at enrollment shows older students as being far more likely to dropout.
 
 
 
@@ -190,11 +190,11 @@ We can also take a look at the cumulative kde plots.
 </div>
 </details>
 
-To be honest, the cumulative Kde plots aren't particuarly useful, as most of the insights can be quite easily pulled from the Kde plots. 
+To be honest, the cumulative Kde plots aren't particuarly useful in this case, and most of the insights can be quite easily pulled from the Kde plots. Some of the tail lengths can give us a few extra bits of information though.
 
 
 ## $${\color{#00A5A8}\text{1.4 Binary Feature Analysis}}$$
-To Wrap up our EDA We'll take a look at our binary Features using sunburst plots. Unfortunately, they're no longer interactive as images, which is half the value (and 100% of the fun) of a sunburst plot, but we'll make do. 
+To Wrap up our EDA We'll take a look at our binary Features using sunburst plots. Unfortunately they're no longer interactive as images, which is half the value (and 100% of the fun) of a sunburst plot, but we'll make do. 
 
 <details>
   <summary>$${\color{#72B3A2}\text{View Sunburst Plots}}$$</summary>
@@ -242,9 +242,9 @@ Some features such as previous qualification (grade) and admission grade already
 
 For the sake of time, a quick script was written to assess a range of transformations on selected numeric features, which excluded both boolean features and features to be later encoded.
 
-**Note:** Some transformations require non-negative or strictly positive input values. A filter was applied to ensure transformations were only used where approprate. While each row appears to contain a transformation value, some of these values are simply a placeholder, where no transformation has been applied.
+**Note:** Some transformations require non-negative or strictly positive input values. A filter was applied to ensure transformations were only used where approprate. While each row appears to contain a transformation value, some of these values are simply a placeholder and no transformation has been applied.
 
-The results were as follows:
+The results are as follows:
 
 <details>
   <summary>$${\color{#72B3A2}\text{View Transformation Results}}$$</summary>
@@ -277,7 +277,7 @@ Moving on to feature importance analysis, which is quite often misunderstood and
 
 
 ## $${\color{#00A5A8}\text{3.1 Impurity-Based Feature Importance}}$$
-Impurity-based feature importance is an embedded method found in tree-based models. Features capable of producing the pureset splits, hence contributing to a cleaning partitioning of the data, will be considered as the features wit hthe highest importance.
+Impurity-based feature importance is an embedded method found in tree-based models. Features capable of producing the pureset splits, hence contributing to the cleanest partitioning of the data, will be considered as the features with the highest importance.
 
 To obtain robust results, the following procedure was used:
 
@@ -300,11 +300,11 @@ To obtain robust results, the following procedure was used:
 </details>
 
 ### Problems with Impurity-Based Feature Importance
-The imporuty-based approach is performed on the training data, therefore if our tree-based model is overfitting and its performance of the test data is porr compared to the training data, the results for the analysis are not reliable. Another problem with the impurity-based approach is its bias towards favoring numerical feature, or features with more categories.
+The impuruty-based approach is performed on the training data, therefore if our tree-based model is overfitting and its performance of the test data is poor compared to the training data, the results for the analysis are not reliable. Another problem with the impurity-based approach is its bias towards favoring numerical feature, or features with more categories.
 
 
 ## $${\color{#00A5A8}\text{3.2 Permutation-Based Feature Importance}}$$
-Next we'll perform permutation-based feature importance. In this method, each feature is asynchronously shuffled and the drop in model performance is recorded. A significant drop in model performance indicates the feature to be important. If not drop in performance is recorded, we know the model's performance isn't reliant on the feature (although it doesnt necessarily imply we can drop the feature).
+Next we'll perform permutation-based feature importance. In this method, each feature is asynchronously shuffled and the drop in model performance is recorded. A significant drop in model performance indicates the feature to be important. If no drop in performance is recorded, we know the model's performance isn't reliant on the feature (although it doesnt necessarily imply we can drop the feature).
 
 The same procedure from the impurity-based analysis was conducted, with the measurement of interest being the drop (or lack thereof) in model performance. 
 
@@ -326,7 +326,7 @@ The same procedure from the impurity-based analysis was conducted, with the meas
 Despite being a popular method of evaluating feature importance, permutation importance is a problematic evaluation method. The following article does an excellent job explaining why we should be careful when using permutation importance, or to simply [stop permuting features](https://towardsdatascience.com/stop-permuting-features-c1412e31b63f) altogether.
 
 To summarise, permutation based importance is:
-- Biased toward colinear features, as well as features that have many categories. further suggest that bootstrapping exaggerates these effects
+- Biased toward colinear (correlated) features, as well as features containing many categories.
 - Exaggerated by OOB measures where they overestimate the importance of colinear features
 - Affected by true features being correlated with noise features
 
@@ -350,7 +350,7 @@ For the most part, the permutation and impurity based methods seem to be in agre
 The above examples give us a rough idea about our feature importances, but other methods of evaluation would be beneficial to include. Below are a few examples of such methods we could add:
 
 ### Sequential Feature Selection
-SFS is a family of greedy search algorithms that select features sequentially. The process starts with an empty set and adds (or removes) one feature at a time based on the model’s performance, until we reach the desired number of features, or until performance stops improving. While powerful, it becomes computationally expensive the more features we have, particuarly for backwards SFS where we begin with the entire set of features.
+SFS is a family of greedy search algorithms that select features sequentially. The process starts with an empty set and adds (or removes) one feature at a time based on the model’s performance until reaching the desired number of features, or until performance stops improving. While powerful, it becomes computationally expensive the more features we have, particuarly for backwards SFS where we begin with the entire set of features.
 
 ### Boruta
 Boruta is an all-relevant feature selection method, meaning it aims to retain all features contributing to the model's performance, no matter how small. It works as a wrapper algorithm around tree based models to find the most relevant features. The idea is to create shadow features by randomly permuting the values of each feature simultaneously, and then training the model on both the original and shadow features. Features that consistently outperform the shadow features are considered important, while other features are discarded based on a set threshold.
@@ -377,9 +377,9 @@ Before continuing, I want to define a few terms:
 2. feature generation
 3. feature engineering
 
-You'll often see the terms feature transformation and feature engineering used interchangeably. To the best of my understanding, feature engineering encompasses both feature transformation and feature generation, though I've witnessed people use the term transformation when referring to the generation of new features. Here, we'll use the term transformation to describe the changes made do individual features, generation to describe the creation of new features, while engineering can refer to either.
+You'll often see the terms feature transformation and feature engineering used interchangeably. To the best of my understanding, feature engineering encompasses both feature transformation and feature generation, though I've witnessed people use the term transformation when referring to the generation of new features. Here, we'll use the term transformation to describe the changes made to individual features, generation to describe the creation of new features, while engineering can refer to either.
 
-Feature generation is a huge part of the machine learning process, and includes the creation of new features through various combinations of pre-existing features. Well-engineered features help models capture underlying patterns in the data more effectively, essentially translating the information into a format more easily interpreted by the model.
+Feature generation is a huge part of the machine learning process and includes the creation of new features through various combinations of pre-existing features. Well-engineered features help models capture underlying patterns in the data more effectively, essentially translating the information into a format more easily interpreted by the model.
 
 The problem here is there exist an infinite set of possible features to engineer, and so domain knowledge becomes the main prerequisites in efficiently engineering useful features. This is why you'll often hear feature engineering being referred to as an 'art'.
 
@@ -387,7 +387,7 @@ The topic is incredibly vast, so instead of reinventing the wheel, you can find 
 
 
 # $${\color{#00D8DB}\text{5. Machine Learning}}$$
-The start to end process of machine learning is far from linear, in fact, its quite the opposite, and looks more like this:
+The start to end process of machine learning is far from linear, in fact, its quite the opposite, and looks more like the below diagram.
 
 <details>
   <summary>$${\color{#72B3A2}\text{View Workflow Diagram}}$$</summary>
@@ -396,17 +396,15 @@ The start to end process of machine learning is far from linear, in fact, its qu
 </div>
 </details>
 
-By now, we would've already already circulated the process a couple of times before investing time into our final design. Below is an example of how our workflow may look like after a few of these cycles.
-
+By this point, we would've already already circulated the process a couple of times before investing time into our final design. Below is simply an example of how our workflow may look after a few of these cycles.
 
 
 ## $${\color{#00A5A8}\text{5.1 Building a Pipeline}}$$
-To have an efficient workflow, it helps to build a strong pipeline. 
+To have an efficient workflow, it helps to build a pipeline. 
 
-To summarize, a pipeline is a streamlined and structured way to automate the end-to-end process of applying machine learning models. We can include all of our feature selection, feature engineering, and other processing steps into a single chained event. We can even include the model itself if desired.
+To summarize, a pipeline is a streamlined and structured way to automate the end-to-end process of applying machine learning models. We can include all of our feature selection, feature engineering, and any other processing steps into a single chained event. We can even include the model itself if desired.
 
-Pipelinews ensure that each step is properly executed in the correct sequence, and that transformations are applied to the training and test data without data leakage.
-They also allow us to easily modify our process should we wish to make a change, or experiment with various preprocessing options.
+Pipelines ensure each step is properly executed in the correct sequence and that transformations are applied to the training and test data without data leakage. They also allow us to easily modify our process should we wish to make a change or experiment with various preprocessing options.
 
 Pipelines can feel complicated at first, however they're essential to learn once the processing procedure becomes more complicated.
 
@@ -441,7 +439,7 @@ After testing baseline models on the data, tree based models proved to work best
 
 Next we need to tune our model hyperparameters, which can be done efficiently using a library called optuna.
 
-Optuna works by creating what's called a 'study', where the goal is to maximize (or minimize depending on the metric) the output of the study for the given hyperparameters. 
+Optuna works by creating what's called a 'study', where the goal is to maximize (or minimize depending on the metric) the output of the study with the given hyperparameters. 
 
 An example study can be seen below.
 <details>
@@ -455,7 +453,7 @@ The study will run for n iterations - 40 in the case of the above study - before
 <br/>
 
 ## $${\color{#00A5A8}\text{5.3 Stacked Ensemble Model}}$$
-The tuned XGBoost model was able to score around 82%, which isn't bad, however additional strategies can be used to increase model performance. One such strategy is the use of a stacked ensemble, often simply referred to as 'stacking'. Stacking involves combining multiple base models (learners) with a meta-model to achieve better predictive performance than any single base model alone.
+The tuned XGBoost model was able to score around 82%, which isn't bad, however additional strategies can be used to increase model performance. One such strategy is the use of an ensemble, or in this specific case, a stacked ensemble, often simply referred to as 'stacking'. Stacking involves combining multiple base models (learners) with a meta-model to achieve better predictive performance than any single base model alone.
 
 For the ensemble, multiple models are trained independently on the same dataset. These base models can vary, such as combining SVC models with tree based models, or they can simply be different instances of the same model with varying hyperparameters.
 
@@ -470,7 +468,7 @@ The final result of the stacked ensemble was an accuracy score of 83.82%, just 0
 
 
 # $${\color{#00D8DB}\text{7. Further Analysis}}$$
-While our leaderboard score score is quite nice, the goal here wasn't to score high on the leaderboard, rather, our goal is aimed at the early detection of students at risk of dropping out. When using accuracy score, we're simply aiming to maximize our classification accuracy over the 3 classes, with all classes weighted with equal importance. Instead of using accuracy, we need to alter our model and metric to put more emphasis on detecting the dropout class, which is where class weights and alternative metrics come in to play.
+While our leaderboard score score is quite nice, the goal here wasn't to score high on the leaderboard, rather, our goal is aimed at the early detection of students at risk of dropping out. When using accuracy score, we're simply aiming to maximize our classification accuracy over the 3 classes, with all classes weighted as equally important. Instead of using accuracy, we need to alter our model and metric to put more emphasis on detecting the dropout class, which is where class weights and alternative metrics come in to play.
 
 ## $${\color{#00A5A8}\text{7.1 Changing our Metric}}$$
 For classification problems, other metrics such as f1 score - whether it be the standard, weighted, micro or macro variant - are commonly used, as well as ROC AUC.
@@ -490,7 +488,7 @@ $$\text{Precision} = \frac{TP}{TP + FP}$$
 Where TP is the number of true positives, and FP is the number of false positives.
 <br/>
 ### Recall
-Recall, also known as Sensitivity, is the ratio of the number of correct positive predictions to the number of all positive predictions. The formula for precision is:
+Recall, also known as Sensitivity, is the ratio between the number of correct positive predictions to the total number of positive predictions. The formula for precision is:
 
 $$\text{Recall} = \frac{TP}{TP + FN}$$
 
@@ -498,7 +496,7 @@ Where FN is false negatives.
 
 <br/>
 
-**Note:** It's common to see people claim precision and recall to be the same as sensitivity and specificity, however this is not the case. While recall and sensitivity are the same, precision and specificity are **NOT** the same.
+**Fun Fact:** It's common to see people mistake precision and recall to be the same as sensitivity and specificity, however this is not the case. While recall and sensitivity are the same, precision and specificity are **NOT** the same.
 
 ### Specificity
 $$\text{specificity} = \frac{TN}{TN + FP}$$
@@ -513,7 +511,8 @@ As shown above, specificity is essentially 'out of all negative samples, how man
 There exist four main variants of the F1 score:
 
 **Standard/Binary F1 Score**
-The standard/binary F1 score, generally referred to as the F1 score, is simply the harmonic mean between precision and recall. The standard F1 score is used when you have a binary classification problem and need a balance between precision and recall, which is particuarlly important in situations where the classes are imbalanced. Imagine you were classifying card transactions as normal or fraud, where only 0.5% of transactions are fraud. Using the accuracy metric, we could easily obtain scores around 99.5% by simply predicting all transactions to be normal. Using the F1 score however, we'd obtain a score of 0! 
+
+The standard/binary F1 score, typically just referred to as the F1 score, is simply the harmonic mean between precision and recall. The standard F1 score is used when you have a binary classification problem and need a balance between precision and recall, which is particuarlly important in situations where the classes are imbalanced. Imagine you were classifying card transactions as normal or fraud where only 0.5% of transactions are fraud. Using the accuracy metric, we could easily obtain scores around 99.5% by simply predicting all transactions to be normal. Using the F1 score however, we'd obtain a score of 0! 
 
 
 The formula for the binary F1 score is:
@@ -523,11 +522,10 @@ F1 = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \tex
 $$
 
 
-What if we're dealing with a multiclass classification problem?
 
 **Weighted F1 Score**
 
-The weighted, or weighted-averaged F1 score calculates the F1 score for each class independently and then takes the weighted average, with weights proportional to the number of true instances for each class. Weighted F1 score is typically used when we want an overall performance measure that reflects the importance of each class proportional to its frequency in the dataset. Care must be taken when using the weighted F1 score, as it can mask poor performance on minority classes in highly imbalanced datasets.
+The weighted, or weighted-average F1 score calculates the F1 score for each class independently and then takes the weighted average, with weights proportional to the number of samples in each class. The Weighted F1 score is typically used when we want an overall performance measure that reflects the importance of each class proportional to its frequency in the dataset. Care must be taken when using the weighted F1 score, as it can mask poor performance on minority classes in highly imbalanced datasets.
 
 The formula for the weighted F1 score is:
 
@@ -545,6 +543,7 @@ Where:
 
 
 **Macro F1 Score**
+
 Unlike the weighted-average F1 score, the macro-average F1 score doen't take class weights into account. The macro F1 score is useful if you want to evaluate the performance of your model on all classes equally.
 
 The formula for the macro F1 score is:
@@ -558,7 +557,8 @@ Where:
 
 
 **Micro F1 Score**
-Lastly, the micro F1 score, which computes the proportion of correctly classified observations out of all observations.
+
+Lastly we have the micro F1 score, which computes the proportion of correctly classified observations out of all observations.
 
 The formula for the micro F1 score is:
 
@@ -585,7 +585,7 @@ The ROC (Receiver Operating Characteristic) AUC (Area Under the Curve) is anothe
 
 As shown, the ROC AUC is a measurement of the True Positive Rate (TPR) against the False Positive Rate (FPR) for each class at various thresholds. It shows how by changing the threshold we can increase our true positive rate at the expense of increasing the false positive rate. The same works in reverse, where we can decrease our false positive rate at the expense of decreasing the true positive rate. There's no single correct value for the threshold as it will vary based on our goal.
 
-The AUC values shown are summary statistics that reflect the model's ability to correctly distinguish between classes. AUC values should range between 0.5 to 1.0, with a value of 0.5 indicating the model to be no better at distinguishing between classes than randomly guessing. A value of 1 would indicate a model with perfect accuracy, while negative values are likely to indicate errors in the data labels, or that there's an error elsewhere.
+The AUC values shown are summary statistics that reflect the model's ability to correctly distinguish between classes. AUC values should range between 0.5 to 1.0, with a value of 0.5 indicating the model to be no better at distinguishing between classes than randomly guessing. A value of 1 would indicate a model with perfect accuracy, while values well below 0.5 are likely to indicate errors in the data labels, or that there's an error elsewhere. 
 
 
 
@@ -606,7 +606,7 @@ Before we try out our new metrics, we need a way to ensure our model puts more f
 
 There's a lot to take in from the one plot, so lets begin with the main class of interest, class 0. As we'd expect, increasing the class weight increases class 0's recall, while also reducing its precision. This is due to a large proportion of class 2 ('enrolled' class) being incorrectly classified as class 0, which is apparent from the steep decrease in its recall as class 0's weight value increases. Class 1 is affected in the same way, although not nearly to the same extent.
 
-We can look at other metrics too, such as our ROC AUC, Weighted F1, and accuracy scores.
+We can look at other metrics too, such as the Weighted F1 and accuracy scores.
 
 <details>
   <summary>$${\color{#72B3A2}\text{View ROC AUC/Accuracy Scores}}$$</summary>
@@ -622,12 +622,12 @@ Lastly, we'll plot some confusion matricies; one for balanced class weights, and
 
 
 <details>
-  <summary>$${\color{#72B3A2}\text{View ROC AUC/Accuracy Scores}}$$</summary>
+  <summary>$${\color{#72B3A2}\text{View Confusion Matrices}}$$</summary>
 
 **Balanced Class Weights:**
 
 <div align="center">
-	<img width = "800" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/b1fbf7e3-4283-4fa2-8995-c060365f64e3">
+	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/b1fbf7e3-4283-4fa2-8995-c060365f64e3">
 </div>
 
 <br/>
@@ -635,12 +635,12 @@ Lastly, we'll plot some confusion matricies; one for balanced class weights, and
 **Imbalanced Class Weights:**
 
 <div align="center">
-	<img width = "800" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/dc7b7a9b-2e8c-454f-9c27-a37b9c10ebde">
+	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/dc7b7a9b-2e8c-454f-9c27-a37b9c10ebde">
  </div>
 
 </details>
 
-We managed to detect over 2000 extra cases of the dropout class! That's great, however it does come at a cost. Around 4000 students in class 2 are now being predicted as class 1; not so great. This is one of the tricky parts in optimizing for certain metrics. How much are we willing to sacrifice our precision and recall of classes 1 and 2 in order to increase our recall for class 1? In the real world, this is where more math, would come in to play, but we'll leave it here for now.
+We managed to detect over 2000 extra cases of the dropout class! That's great, however it does come at a cost. Around 4000 students in class 2 are now being predicted as class 1; not so great. This is one of the tricky parts in optimizing for certain metrics. How much are we willing to sacrifice our precision and recall of classes 1 and 2 in order to increase our recall for class 1? In the real world, this is where more math would come in to play, but we'll leave it here for now.
 
 
 ## $${\color{#00A5A8}\text{7.3 t-SNE}}$$
