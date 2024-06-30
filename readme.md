@@ -711,7 +711,10 @@ With so much variation in the plots, we need to be careful about not only how th
 
 
 
-
+### Other methods of Dimensionality reduction
+t-SNE isn't the only method of dimensionality reduction. Other options include:
+- PCA
+- UMAP 
 
 
 
