@@ -4,7 +4,6 @@
 The transition to higher education can be challenging for many students, and many factors can influence academic performance. As a result, some students may struggle to keep up with the demands of their coursework, leading to underperformance or dropping out. Below we explore the usage of machine learning for early detection of students on the path to dropping out, with the goal of being able catch problems early and provide intervention strategies on a student-to-student basis.
 
 
-https://github.com/ashishpatel26/Amazing-Feature-Engineering/blob/master/A%20Short%20Guide%20for%20Feature%20Engineering%20and%20Feature%20Selection.md
 
 
 # $${\color{#E0581C}\text{Results Summary}}$$
@@ -69,8 +68,9 @@ The main goals are to:
 
 
  **7. Further Analysis and discussion**
-- 7.1 t-SNE
-- 7.2 Changing our Metric
+- 7.1 Changing our Metric
+- 7.2 Changing our Class Weights
+- 7.3 t-SNE
 - Additional Features
 
 
@@ -467,14 +467,154 @@ For the base learners, several instances of XGBoost, LightGBM, and Catboost were
 
 
 # $${\color{#00D8DB}\text{6. Results}}$$
-
+The final result of the stacked ensemble was an accuracy score of 83.82%, just 0.31% below the kaggle leaderboard highscore, which is an increase of roughly 1.8% in comparison to our single XGBoost model. 
 
 
 # $${\color{#00D8DB}\text{7. Further Analysis}}$$
+While our leaderboard score score is quite nice, the goal here wasn't to score high on the leaderboard, rather, our goal is aimed at the early detection of students at risk of dropping out. When using accuracy score, we're simply aiming to maximize our classification accuracy over the 3 classes, with all classes being weighted with equal importance. Instead of using accuracy, we need to alter our model and metric to put more emphasis on being able to detect the dropout class, which is where class weights and alternative metrics come in to play.
+
+## $${\color{#00A5A8}\text{7.1 Changing our Metric}}$$
+For classification problems, other metrics such as f1 score - whether it be the standard, weighted, micro or macro variant - are commonly used, as well as ROC AUC.
+
+To understand F1 scores, you first need to know about precision and recall. If you're unfamiliar with these topics, I've inserted a short explanation in the dropdown below.
 
 
-## $${\color{#00A5A8}\text{7.1 t-SNE}}$$
+<details>
+  <summary>$${\color{#72B3A2}\text{What are Precision and Recall?}}$$</summary>
 
-## $${\color{#00A5A8}\text{7.2 Changing our Metric}}$$
+### Precision
+  
+Precision, also known as Positive Predictive Value, is the ratio of correctly predicted positive observations to the total predicted positives. It measures the accuracy of the positive predictions. The formula for precision is:
+
+$$\text{Precision} = \frac{TP}{TP + FP}$$
+
+Where TP is the number of true positives, and FP is the number of false positives.
+<br/>
+### Recall
+Recall, also known as Sensitivity, is the ratio of the number of correct positive predictions to the number of all positive predictions. The formula for precision is:
+
+$$\text{Recall} = \frac{TP}{TP + FN}$$
+
+Where FN is false negatives.
+
+<br/>
+
+**Note:** It's common to see people claim precision and recall to be the same as sensitivity and specificity, however this is not the case. While recall and sensitivity are the same, precision and specificity are **NOT** the same.
+
+### Specificity
+$$\text{specificity} = \frac{TN}{TN + FP}$$
+
+As shown above, specificity is essentially 'out of all negative samples, how many were classed as negative', which can be interpreted as the recall for the negative class. This is typically used in binary classification, such as classifying tumors to be benign or malignant.
+
+</details>
+
+
+### F1 Scores
+
+There exist four main variants of the F1 score:
+
+**Standard/Binary F1 Score**
+The standard/binary F1 score, generally referred to as the F1 score, is simply the harmonic mean between precision and recall. The standard F1 score is used when you have a binary classification problem and need a balance between precision and recall, which is particuarlly important in situations where the classes are imbalanced. Imagine you were classifying card transactions as normal or fraud, where only 0.5% of transactions are fraud. Using the accuracy metric, we could easily obtain scores around 99.5% by simply predicting all transactions to be normal. Using the F1 score however, we'd obtain a score of 0! 
+
+
+The formula for the binary F1 score is:
+
+$$
+F1 = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}
+$$
+
+
+What if we're dealing with a multiclass classification problem?
+
+**Weighted F1 Score**
+
+The weighted, or weighted-averaged F1 score calculates the F1 score for each class independently and then takes the weighted average, with weights proportional to the number of true instances for each class. Weighted F1 score is typically used when we want an overall performance measure that reflects the importance of each class proportional to its frequency in the dataset. Care must be taken when using the weighted F1 score, as it can mask poor performance on minority classes in highly imbalanced datasets.
+
+The formula for the weighted F1 score is:
+
+$$\text{Weighted F1} = \sum_{i=1}^{N} \left( \frac{n_i}{n} \cdot \text{F1}_i \right)$$
+
+Where:
+- $N$ is the number of classes.
+- $n_{i}$ is the number of samples in class $i$.
+- $n$ is the total number of samples from all classes.
+- $\text{F1}_i$ is the F1 score for class $i$.
+
+
+
+
+
+
+**Macro F1 Score**
+Unlike the weighted-average F1 score, the macro-average F1 score doen't take class weights into account. The macro F1 score is useful if you want to evaluate the performance of your model on all classes equally.
+
+The formula for the macro F1 score is:
+
+$$\text{Macro F1} = \frac{1}{N} \sum_{i=1}^{N} \text{F1}_i$$
+
+Where:
+- $N$ is the number of classes.
+- $\text{F1}_{i}$ is the F1 score for class $i$.
+
+
+
+**Micro F1 Score**
+Lastly, the micro F1 score, which computes the proportion of correctly classified observations out of all observations.
+
+The formula for the micro F1 score is:
+
+$$\text{Micro F1} = 2 \cdot \frac{TP_{micro}}{TP_{micro} + FP_{micro} + FN_{micro}}$$
+
+Where:
+- $TP_{micro}$ is the total true positives across all classes.
+- $FP_{micro}$ is the total false positives across all classes.
+- $FN_{micro}$ is the total false negatives across all classes.
+
+In single label multiclass classification problems such as ours, this is essentially the same as calculating the overall accuracy.
+
+
+### ROC AUC
+The ROC (Receiver Operating Characteristic) AUC (Area Under the Curve) is another popular metric. To better understand it, we'll take a look at the results from our model.
+
+<details>
+  <summary>$${\color{#72B3A2}\text{View ROC AUC plot}}$$</summary>
+
+<div align="center">
+	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/71b38208-968d-4fd5-a8d2-7941f07d4cf7">
+</div>
+</details>
+
+As shown, the ROC AUC is a measurement of the True Positive Rate (TPR) against the False Positive Rate (FPR) for each class at various thresholds. It shows how by changing the threshold we can increase our true positive rate at the expense of increasing the false positive rate. The same works in reverse, where we can decrease our false positive rate at the expense of decreasing the true positive rate. There's no single correct value for the threshold as it will vary based on our goal.
+
+The AUC values shown are summary statistics that reflect the model's ability to correctly distinguish between classes. AUC values should range between 0.5 to 1.0, with a value of 0.5 indicating the model to be no better at distinguishing between classes than randomly guessing. A value of 1 would indicate a model with perfect accuracy, while negative values are likely to indicate errors in the data labels, or that there's an error elsewhere.
+
+
+
+
+
+
+
+
+
+
+
+## $${\color{#00A5A8}\text{7.2 Changing our Class Weights}}$$
+Before we try out our new metrics, we need a way to make sure our model is more focused on obtaining a high recall for class 0, and less focused on getting a high accuracy over all classes. One way to do this is to adjust the class weights. We'll iterate over several different class weight values and analyze our results.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## $${\color{#00A5A8}\text{7.3 t-SNE}}$$
 
 ## $${\color{#00A5A8}\text{7.2 Additional Features}}$$
