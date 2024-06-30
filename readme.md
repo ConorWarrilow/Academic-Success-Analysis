@@ -600,7 +600,7 @@ Before we try out our new metrics, we need a way to ensure our model puts more f
   <summary>$${\color{#72B3A2}\text{View Precision/Recall Scores}}$$</summary>
 
 <div align="center">
-	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/c65c3886-0b8b-4b1f-9519-10b3ecaec734">
+	<img width = "800" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/c65c3886-0b8b-4b1f-9519-10b3ecaec734">
 </div>
 </details>
 
@@ -609,24 +609,90 @@ There's a lot to take in from the one plot, so lets begin with the main class of
 We can look at other metrics too, such as our ROC AUC, Weighted F1, and accuracy scores.
 
 <details>
-  <summary>$${\color{#72B3A2}\text{View Precision/Recall Scores}}$$</summary>
+  <summary>$${\color{#72B3A2}\text{View ROC AUC/Accuracy Scores}}$$</summary>
 
 <div align="center">
-	<img width = "600" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/c65c3886-0b8b-4b1f-9519-10b3ecaec734">
+	<img width = "800" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/fb551ad8-0809-4b1f-9d1d-21e46a78fac7">
 </div>
 </details>
 
-![weighted-f1-accuracy-plot](https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/037f55aa-3a4e-4934-bb9b-cc5486d2fd14)
+At a weight value of 5, our accuracy score took a hit of roughly 3%, while our weighted F1 score went down by around 4.5%. 
+
+Lastly, we'll plot some confusion matricies; one for balanced class weights, and one with the class weight as 5 for class 0.
 
 
+<details>
+  <summary>$${\color{#72B3A2}\text{View ROC AUC/Accuracy Scores}}$$</summary>
 
+**Balanced Class Weights:**
 
+<div align="center">
+	<img width = "800" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/b1fbf7e3-4283-4fa2-8995-c060365f64e3">
+</div>
 
+<br/>
+ 
+**Imbalanced Class Weights:**
 
+<div align="center">
+	<img width = "800" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/dc7b7a9b-2e8c-454f-9c27-a37b9c10ebde">
+ </div>
 
+</details>
 
+We managed to detect over 2000 extra cases of the dropout class! That's great, however it does come at a cost. Around 4000 students in class 2 are now being predicted as class 1; not so great. This is one of the tricky parts in optimizing for certain metrics. How much are we willing to sacrifice our precision and recall of classes 1 and 2 in order to increase our recall for class 1? In the real world, this is where more math, would come in to play, but we'll leave it here for now.
 
 
 ## $${\color{#00A5A8}\text{7.3 t-SNE}}$$
+As a bit of added fun, we'll explore a method of dimensionality reduction known as t-SNE, or t-Distributed Stochastic Neighbor Embedding (not that anyone would ever use the full name). To keep things simple, t-SNE is a way of visualizing high-dimensional data in 2d or 3d to reveal patterns that would otherwise be difficult to see. 
+
+
+When using t-SNE, there are a few things we need to be careful about. Firstly, while it preserves the local structures (neighborhood relationships) within the data, it distorts the global structure. This means two clusters that are closer together than a third cluster arent necessarily more similar to eachother than they are to the third cluster. Second, t-SNE takes all features into account with equal influence. Depending on the goal, it could be wise to drop any features we're not interested in. Lastly t-SNE, involves a parameter called 'perplexity', which is a somewhat 'balance' between the plot's local and global aspects. We can also look at it as a guess about the number of close neighbors each point has. 
+
+This probably sound confusing, so We'll take a look at some examples to understand it better, where we'll alter both the perplexity value, as well as the features we include.
+
+
+
+<details>
+  <summary>$${\color{#72B3A2}\text{View ROC AUC/Accuracy Scores}}$$</summary>
+
+**Perplexity 10:**
+
+<div align="center">
+	<img width = "800" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/443eb9cc-ac45-4f67-b920-812516653ab4">
+</div>
+
+<br/>
+ 
+**Perplexity 30:**
+
+<div align="center">
+	<img width = "800" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/66fcda9b-ae07-4fb6-8997-c6a8db0d8072">
+ </div>
+
+<br/>
+
+ **Perplexity 60:**
+
+<div align="center">
+	<img width = "800" src="https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/b8326cb4-3cc1-4f43-af08-a02c9ad7fe8b">
+ </div>
+
+</details>
+
+
+
+
+
+
+
+
+
+
+![t-SNE-10-features-perp30](https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/05b43de0-d38d-441a-9c09-e3721c56ac83)
+
+![t-SNE-10-features-perp30-selected-area](https://github.com/ConorWarrilow/Academic-Success-Analysis/assets/152389538/a69d8786-a12a-4ba8-9efe-8e03ee113c2b)
+
+
 
 ## $${\color{#00A5A8}\text{7.2 Additional Features}}$$
