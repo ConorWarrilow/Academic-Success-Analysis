@@ -640,11 +640,11 @@ Lastly, we'll plot some confusion matricies; one for balanced class weights, and
 
 </details>
 
-We managed to detect over 2000 extra cases of the dropout class! That's great, however it does come at a cost. Around 4000 students in class 2 are now being predicted as class 1; not so great. This is one of the tricky parts in optimizing for certain metrics. How much are we willing to sacrifice our precision and recall of classes 1 and 2 in order to increase our recall for class 1? In the real world, this is where more math would come in to play, but we'll leave it here for now.
+We managed to detect over 2000 extra cases of the dropout class! That's great, however it does come at a cost. Around 4000 students in class 2 are now being predicted as class 1; not so great. This is one of the tricky parts in optimizing for specific metrics or specific classes. How much are we willing to sacrifice our precision and recall of classes 1 and 2 in order to increase our recall for class 1? In the real world, this is where more math would come in to play, but we'll leave it here for now.
 
 
 ## $${\color{#00A5A8}\text{7.3 t-SNE}}$$
-As a bit of added fun, we'll explore a method of dimensionality reduction known as t-SNE, or t-Distributed Stochastic Neighbor Embedding (not that anyone would ever use the full name). To keep things simple, t-SNE is a way of visualizing high-dimensional data in 2d or 3d to reveal patterns that would otherwise be difficult to see. 
+As a bit of added fun, we'll finish off by exploring a method of dimensionality reduction known as t-SNE, or t-Distributed Stochastic Neighbor Embedding (not that anyone would ever use the full name). To keep things simple, t-SNE is a way of visualizing high-dimensional data in 2d or 3d to reveal patterns that would otherwise be difficult to see. 
 
 
 When using t-SNE, there are a few things we need to be careful about. Firstly, while it preserves the local structures (neighborhood relationships) within the data, it distorts the global structure. This means two clusters that appear closer together than a third cluster arent necessarily more similar to eachother than they are to the third cluster. Second, t-SNE takes all features into account with equal influence. Depending on the goal, it could be wise to drop any features we're not interested in. Lastly, t-SNE involves a parameter called 'perplexity', which is a somewhat 'balance' between the plot's local and global aspects. We can also look at it as a guess about the number of close neighbors each point has. 
@@ -708,9 +708,6 @@ They might as well be entirely different data sets at this point.
 
 With so much variation in the plots, we need to be careful about not only how they're generated, but how they're intrepreted. A wide range of perplexity values should be tested before performing any analysis, and each feature included should be relevant to the purpose of the analysis.
 
-
-
-## $${\color{#00A5A8}\text{7.2 Conclusion}}$$
 
 
 
