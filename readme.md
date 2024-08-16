@@ -173,7 +173,7 @@ Next We'll look at the kde plots for our numeric features.
 </div>
 </details>
 
-Looking at the kde plots, two features stand out the most: Curricular units 1st sem (approved) and curricular units 2nd sem (approved). These features show distinct distributions across the target classes with very little overlap amongst the dropout and graduate classes. The majority of values within the dropout class are zero in both features, while most values range between 5 and 7 for the graduate class. The enrolled class appears to span a somewhat gaussian distribution between the two other classes, with its meaning falling much closer to the graduate class.
+Looking at the kde plots, two features stand out the most: Curricular units 1st sem (approved) and curricular units 2nd sem (approved). These features show distinct distributions across the target classes with very little overlap amongst the dropout and graduate classes. The majority of values within the dropout class are zero in both features, while most values range between 5 and 7 for the graduate class. The enrolled class appears to span a somewhat gaussian distribution between the two other classes, with its mean falling much closer to the graduate class.
 
 Curricular units 1st/2nd sem (grade) features also show strong separation between class distributions, particuarly between the dropout and graudate/enrolled classes.
 
